@@ -147,8 +147,8 @@
     });
 
     /* hero media slow pan (scale leaves headroom, video fills the card) */
-    gsap.fromTo('.hero-media video', { yPercent: -6 }, {
-      yPercent: 6, ease: 'none',
+    gsap.fromTo('.hero-media video', { yPercent: -6, scale: 1.14 }, {
+      yPercent: 6, scale: 1.14, ease: 'none',
       scrollTrigger: { trigger: '.hero-media', start: 'top top', end: 'bottom top', scrub: true }
     });
 
