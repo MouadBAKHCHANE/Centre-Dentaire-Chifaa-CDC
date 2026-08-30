@@ -503,10 +503,11 @@ h1, h2, h3 { text-wrap: balance; }
   display: none; flex-direction: column; justify-content: center; gap: 5px;
   width: 44px; height: 44px; padding: 10px;
   border: none; border-radius: 12px; cursor: pointer;
-  background: rgba(143, 120, 104, .25);
+  background: #B1A095;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
 }
 .burger span {
-  display: block; height: 2px; border-radius: 2px; background: var(--ink);
+  display: block; height: 2px; border-radius: 2px; background: #151210;
   transition: transform .3s cubic-bezier(.22,.7,.3,1), opacity .3s;
 }
 .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }

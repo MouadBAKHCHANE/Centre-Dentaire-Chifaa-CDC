@@ -33,7 +33,24 @@
   var vid = document.getElementById('hero-video');
   var toggle = document.getElementById('media-toggle');
   if (vid && toggle) {
-    if (reduced) { vid.pause(); toggle.setAttribute('aria-pressed', 'true'); }
+    /* lecture automatique robuste : iOS peut refuser le premier play()
+       (economie d'energie, chargement) — on reessaie des que possible
+       puis au premier contact avec la page */
+    var tryPlay = function () {
+      vid.muted = true;
+      var p = vid.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    tryPlay();
+    ['loadeddata', 'canplay'].forEach(function (ev) {
+      vid.addEventListener(ev, tryPlay, { once: true });
+    });
+    ['touchstart', 'click'].forEach(function (ev) {
+      document.addEventListener(ev, function onFirst() {
+        if (vid.paused) tryPlay();
+        document.removeEventListener(ev, onFirst);
+      }, { passive: true });
+    });
     toggle.addEventListener('click', function () {
       var paused = vid.paused;
       if (paused) vid.play(); else vid.pause();
