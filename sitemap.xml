@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Remplacer centredentairechifaa.ma par le domaine définitif avant mise en ligne.
+     Ajouter les pages spécialité au fur et à mesure de leur création (voir seo/ACTION-PLAN-SEO-MEKNES.md). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://centredentairechifaa.ma/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://centredentairechifaa.ma/soins/orthodontie-meknes/</loc><priority>0.9</priority></url>
+  <url><loc>https://centredentairechifaa.ma/soins/implants-dentaires-meknes/</loc><priority>0.9</priority></url>
+  <url><loc>https://centredentairechifaa.ma/soins/chirurgie-orale-meknes/</loc><priority>0.9</priority></url>
+  <url><loc>https://centredentairechifaa.ma/soins/parodontie-meknes/</loc><priority>0.9</priority></url>
+  <url><loc>https://centredentairechifaa.ma/soins/prothese-dentaire-meknes/</loc><priority>0.9</priority></url>
+  <url><loc>https://centredentairechifaa.ma/soins/pedodontie-meknes/</loc><priority>0.9</priority></url>
+  <url><loc>https://centredentairechifaa.ma/urgences-dentaires-meknes/</loc><priority>0.8</priority></url>
+</urlset>

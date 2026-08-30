@@ -1,0 +1,6 @@
+# Centre Dentaire Chifaa — Meknès
+# NB: remplacer centredentairechifaa.ma par le domaine définitif avant mise en ligne
+User-agent: *
+Allow: /
+
+Sitemap: https://centredentairechifaa.ma/sitemap.xml
