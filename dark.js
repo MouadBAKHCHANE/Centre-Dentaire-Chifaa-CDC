@@ -345,3 +345,19 @@
     }
   }
 })();
+
+/* Cartes soins : fondu entre plusieurs photos, seulement quand la carte est visible */
+(function () {
+  var figs = document.querySelectorAll('[data-slides]');
+  if (!figs.length) return;
+  figs.forEach(function (fig) {
+    var imgs = fig.querySelectorAll('img'), i = 0, timer = null;
+    if (imgs.length < 2) return;
+    function step() { imgs[i].classList.remove('is-on'); i = (i + 1) % imgs.length; imgs[i].classList.add('is-on'); }
+    function start() { if (!timer) timer = setInterval(step, 3200); }
+    function stop() { clearInterval(timer); timer = null; }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }, { threshold: 0.25 }).observe(fig);
+    } else start();
+  });
+})();

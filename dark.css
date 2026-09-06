@@ -589,3 +589,9 @@ h1, h2, h3 { text-wrap: balance; }
 }
 .qs-photo img { width: 100%; height: 112%; object-fit: cover; display: block; will-change: transform; }
 
+
+/* ---- Cartes soins : diaporama en fondu ---- */
+.s-card figure.s-slides { position: relative; }
+.s-card figure.s-slides img { position: absolute; inset: 0; opacity: 0; transition: opacity 1.1s cubic-bezier(.22,1,.36,1); }
+.s-card figure.s-slides img.is-on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .s-card figure.s-slides img { transition: none; } }
