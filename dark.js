@@ -346,14 +346,32 @@
   }
 })();
 
-/* Cartes soins : fondu entre plusieurs photos, seulement quand la carte est visible */
+/* Cartes soins : fondu entre plusieurs photos + points de navigation, seulement quand la carte est visible */
 (function () {
   var figs = document.querySelectorAll('[data-slides]');
   if (!figs.length) return;
   figs.forEach(function (fig) {
     var imgs = fig.querySelectorAll('img'), i = 0, timer = null;
     if (imgs.length < 2) return;
-    function step() { imgs[i].classList.remove('is-on'); i = (i + 1) % imgs.length; imgs[i].classList.add('is-on'); }
+    var dots = document.createElement('div');
+    dots.className = 's-dots';
+    dots.setAttribute('role', 'tablist');
+    dots.setAttribute('aria-label', 'Photos');
+    var btns = [];
+    imgs.forEach(function (img, k) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 's-dot' + (k === 0 ? ' is-on' : '');
+      b.setAttribute('aria-label', 'Photo ' + (k + 1) + ' sur ' + imgs.length);
+      b.addEventListener('click', function () { go(k); stop(); start(); });
+      dots.appendChild(b); btns.push(b);
+    });
+    fig.appendChild(dots);
+    function go(n) {
+      imgs[i].classList.remove('is-on'); btns[i].classList.remove('is-on');
+      i = n; imgs[i].classList.add('is-on'); btns[i].classList.add('is-on');
+    }
+    function step() { go((i + 1) % imgs.length); }
     function start() { if (!timer) timer = setInterval(step, 3200); }
     function stop() { clearInterval(timer); timer = null; }
     if ('IntersectionObserver' in window) {

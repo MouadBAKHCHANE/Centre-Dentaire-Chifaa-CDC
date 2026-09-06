@@ -595,3 +595,7 @@ h1, h2, h3 { text-wrap: balance; }
 .s-card figure.s-slides img { position: absolute; inset: 0; opacity: 0; transition: opacity 1.1s cubic-bezier(.22,1,.36,1); }
 .s-card figure.s-slides img.is-on { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .s-card figure.s-slides img { transition: none; } }
+.s-dots { position: absolute; left: 14px; bottom: 14px; display: flex; gap: 6px; padding: 6px 8px; border-radius: 999px; background: rgba(8,22,39,.55); backdrop-filter: blur(6px); z-index: 2; }
+.s-dot { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: rgba(244,241,237,.42); cursor: pointer; transition: background .3s, transform .3s; }
+.s-dot.is-on { background: #F4F1ED; transform: scale(1.25); }
+.s-dot:focus-visible { outline: 2px solid #B1A095; outline-offset: 2px; }
