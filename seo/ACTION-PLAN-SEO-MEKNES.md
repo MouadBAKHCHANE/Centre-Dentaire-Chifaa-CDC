@@ -57,7 +57,7 @@ Gabarit par spécialité :
 Étendre le bloc `Dentist` existant du site clair avec les données réelles :
 - `address` complète : Bureau N1, Imm Bureaux El Menzah N5, Av des FAR, Meknès 50000
 - `geo` (33.8947626, -5.5497537 — relevé sur votre fiche Maps), `hasMap` (lien maps.app.goo.gl existant)
-- `openingHoursSpecification` : Lu–Ve 08:30–18:30, Sa 09:00–14:30
+- `openingHoursSpecification` : Lu–Ve 08:30–17:30, Sa 09:00–14:30
 - `telephone` +212 5 35 51 69 24, `aggregateRating` **5.0 / 43** (réel, vérifiable — l'afficher est légitime)
 - `availableService` : les 6 spécialités
 - Sur chaque page soin : `MedicalProcedure` + `BreadcrumbList`. (Pas de `FAQPage` en attente de résultat enrichi : restreint pour les sites commerciaux depuis 2023 — la FAQ reste utile en contenu.)
