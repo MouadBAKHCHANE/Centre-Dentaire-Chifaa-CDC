@@ -443,19 +443,27 @@
     '<button class="lb-btn lb-prev" type="button" aria-label="Photo précédente"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>' +
     '<button class="lb-btn lb-next" type="button" aria-label="Photo suivante"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>' +
     '<button class="lb-btn lb-close" type="button" aria-label="Fermer"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg></button>' +
+    '<div class="lb-top"><span class="lb-count mono" aria-live="polite"></span><span class="lb-cap"></span></div>' +
     '<div class="lb-strip" role="tablist"></div>';
   document.body.appendChild(lb);
   var img = lb.querySelector('.lb-view img'), strip = lb.querySelector('.lb-strip');
   var prev = lb.querySelector('.lb-prev'), next = lb.querySelector('.lb-next'), close = lb.querySelector('.lb-close');
+  var count = lb.querySelector('.lb-count'), cap = lb.querySelector('.lb-cap'), view = lb.querySelector('.lb-view');
   var group = [], idx = 0, lastFocus = null;
 
   function show(i) {
+    var dir = i > idx ? 'is-next' : (i < idx ? 'is-prev' : '');
     idx = i;
-    img.classList.remove('is-swap'); void img.offsetWidth;
+    img.classList.remove('is-swap', 'is-next', 'is-prev'); void img.offsetWidth;
     img.src = group[i].href; img.alt = (group[i].querySelector('img') || {}).alt || '';
-    img.classList.add('is-swap');
+    img.classList.add('is-swap'); if (dir) img.classList.add(dir);
     prev.disabled = i === 0; next.disabled = i === group.length - 1;
-    strip.querySelectorAll('button').forEach(function (b, k) { b.classList.toggle('is-active', k === i); b.setAttribute('aria-selected', k === i); });
+    count.textContent = (i + 1) + ' / ' + group.length;
+    cap.textContent = img.alt;
+    strip.querySelectorAll('button').forEach(function (b, k) {
+      b.classList.toggle('is-active', k === i); b.setAttribute('aria-selected', k === i);
+      if (k === i) strip.scrollTo({ left: b.offsetLeft - (strip.clientWidth - b.offsetWidth) / 2, behavior: 'smooth' });
+    });
   }
   function open(link) {
     var name = link.getAttribute('data-lightbox');
@@ -471,7 +479,7 @@
     lb.hidden = false; setTimeout(function () { lb.classList.add('is-open'); }, 20);
     if (window.cdcLenis) window.cdcLenis.stop();
     document.body.style.overflow = 'hidden';
-    show(group.indexOf(link)); close.focus();
+    idx = -1; show(group.indexOf(link)); close.focus();
   }
   function shut() {
     lb.classList.remove('is-open');
@@ -491,11 +499,12 @@
     else if (e.key === 'ArrowLeft' && idx > 0) show(idx - 1);
     else if (e.key === 'ArrowRight' && idx < group.length - 1) show(idx + 1);
   });
-  var sx = 0;
-  lb.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
-  lb.addEventListener('touchend', function (e) {
-    var dx = e.changedTouches[0].clientX - sx;
-    if (dx > 50 && idx > 0) show(idx - 1); else if (dx < -50 && idx < group.length - 1) show(idx + 1);
+  var sx = 0, sy = 0;
+  view.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  view.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+    if (dx > 0 && idx > 0) show(idx - 1); else if (dx < 0 && idx < group.length - 1) show(idx + 1);
   });
 })();
 

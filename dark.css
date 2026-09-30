@@ -1962,3 +1962,32 @@ a.foot-credit:hover { color: var(--ink); text-decoration: underline; text-underl
   .nav > .btn { display: none; }
   .m-menu { display: flex; }
 }
+
+/* visionneuse : barre du haut (compteur + légende), glissement orienté, miniatures qui défilent entièrement */
+.lb { z-index: 1000; background: #0b0908; }
+.lb-top { position: absolute; left: 0; right: 68px; top: 0; height: 56px; display: flex; align-items: center; gap: 14px; padding: 0 20px; min-width: 0; }
+.lb-count { flex: 0 0 auto; font-size: 13px; letter-spacing: .08em; color: rgba(255,255,255,.85); }
+.lb-cap { min-width: 0; font-size: 14px; color: rgba(255,255,255,.62); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lb-view { top: 60px; grid-template: 100% / 100%; }  /* piste définie : max-height 100 % s'applique aussi aux photos verticales */
+.lb-close { top: 6px; right: 8px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.1); opacity: 1; }
+.lb-prev, .lb-next { top: 60px; }
+.lb-strip { justify-content: flex-start; scroll-snap-type: x proximity; scrollbar-width: none; }
+.lb-strip::-webkit-scrollbar { display: none; }
+.lb-strip::before, .lb-strip::after { content: ""; flex: 1 0 0; }  /* centré quand tout tient, sinon défilement complet */
+.lb-strip button { scroll-snap-align: center; }
+.lb-view img.is-next { animation: lbInNext .35s cubic-bezier(.22,1,.36,1) both; }
+.lb-view img.is-prev { animation: lbInPrev .35s cubic-bezier(.22,1,.36,1) both; }
+@keyframes lbInNext { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+@keyframes lbInPrev { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+@media (max-width: 700px) {
+  .lb-top { right: 60px; padding: 0 16px; }
+  .lb-view { left: 0; right: 0; top: 60px; bottom: 170px; }
+  .lb-view img { border-radius: 0; box-shadow: none; }
+  /* flèches : deux boutons ronds sous la photo, plus sur ses bords */
+  .lb-prev, .lb-next { top: auto; bottom: 108px; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,.12); opacity: 1; }
+  .lb-prev { left: calc(50% - 60px); } .lb-next { right: calc(50% - 60px); }
+  .lb-prev[disabled], .lb-next[disabled] { opacity: .25 !important; pointer-events: none; }
+  .lb-strip { height: 88px; padding: 8px 16px 14px; gap: 6px; }
+  .lb-strip button { width: 76px; height: 60px; }
+}
+@media (prefers-reduced-motion: reduce) { .lb-view img.is-next, .lb-view img.is-prev { animation: none; } }
