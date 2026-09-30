@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261002g'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261002h'          # version de dark.css / dark.js (cache navigateur)
 BOOK = 'https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112'
 MAPS = 'https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA'
 WA = 'https://wa.me/message/MDYCV375HLAJO1'
@@ -716,7 +716,7 @@ def contact_page():
 <main id="top">
 
   <section class="cf-hero">
-    <div class="ph ph-dark cf-hero-bg"><span class="ph-body"><span class="ph-label mono"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"/><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></svg>PHOTO À PRENDRE · PAYSAGE 21:9</span><span class="ph-title">L'accueil du cabinet vu depuis la porte</span><span class="ph-reco">Comptoir de réception et logo CDC bien visibles, lumière du jour, pièce vide ou assistante à son poste avec son accord. Garder le bas de l'image dégagé : le grand titre « CONTACT » s'y superpose.</span></span></div>
+    <img class="cf-hero-bg" src="/assets/img/contact-hero-brosse-a-dents.jpg" alt="Main tendant une brosse à dents électrique vers une autre main, sur fond bleu" fetchpriority="high">
     <span class="cf-hero-tint" aria-hidden="true"></span>
     <h1 class="cf-hero-title">Contact</h1>
   </section>
@@ -744,12 +744,6 @@ def contact_page():
         <span class="lieu-space" aria-hidden="true"></span>
         <span class="lieu-address"><span>Bureau N1, Imm Bureaux El Menzah N5</span><span>Av des FAR, Meknès 50000</span></span>
         <span class="lieu-hours"><span>Lun – Ven : 8h30 – 17h30</span><span>Sam : 9h00 – 14h30</span></span>
-      </a>
-      <a class="lieu-card" href="tel:+212535516924" data-fade>
-        <span class="lieu-title"><span class="lieu-h">Nous joindre</span><span class="lieu-arrow" aria-hidden="true">%(arrow)s</span></span>
-        <span class="lieu-space" aria-hidden="true"></span>
-        <span class="lieu-address"><span>Téléphone : 05 35 51 69 24</span><span>WhatsApp : message direct</span></span>
-        <span class="lieu-hours"><span>Réservation en ligne sur Dentisto</span><span>Dimanche : fermé</span></span>
       </a>
     </div>
   </section>

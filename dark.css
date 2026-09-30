@@ -1991,3 +1991,9 @@ a.foot-credit:hover { color: var(--ink); text-decoration: underline; text-underl
   .lb-strip button { width: 76px; height: 60px; }
 }
 @media (prefers-reduced-motion: reduce) { .lb-view img.is-next, .lb-view img.is-prev { animation: none; } }
+
+/* contact : adresse sur une seule carte, section tenue dans l'écran sur ordinateur */
+@media (min-width: 900px) {
+  .cf-loc { min-height: clamp(420px, 34vw, 560px); padding-top: 120px; }
+  .cf-loc-list { grid-template-columns: minmax(0, 560px); }
+}
