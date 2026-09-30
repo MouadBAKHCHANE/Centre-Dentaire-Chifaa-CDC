@@ -753,3 +753,22 @@
 })();
 
 /* Bloc « Prenez rendez-vous » (blog) : l'anneau tourne tout seul en continu (animation CSS .ab-ring) */
+
+/* « Prenez rendez-vous » (blog) : les photos partent du centre de la section (échelle 0,1) et rejoignent leur place
+   pendant que la section entre à l'écran, comme la référence */
+(function () {
+  var sec = document.querySelector('[data-fl]');
+  if (!sec || !window.gsap || !window.ScrollTrigger) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.utils.toArray(sec.querySelectorAll('.fl-img')).forEach(function (el) {
+    var off = function (axis) {
+      var s = sec.getBoundingClientRect(), r = el.getBoundingClientRect();
+      /* position de départ : le centre de la section (mesuré sans la transformation en cours) */
+      var t = gsap.getProperty(el, axis === 'x' ? 'x' : 'y');
+      return axis === 'x' ? (s.left + s.width / 2) - (r.left + r.width / 2) + t : (s.top + s.height / 2) - (r.top + r.height / 2) + t;
+    };
+    gsap.fromTo(el, { x: function () { return off('x'); }, y: function () { return off('y'); }, scale: 0.1 },
+      { x: 0, y: 0, scale: 1, ease: 'none', immediateRender: true,
+        scrollTrigger: { trigger: sec, start: 'top bottom', end: 'top 45%', scrub: 1 } });
+  });
+})();

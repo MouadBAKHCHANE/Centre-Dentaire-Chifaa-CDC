@@ -412,8 +412,8 @@ def soins_hub(B):
   <section class="st-slider" data-st-slider aria-roledescription="carrousel" aria-label="Exemples de résultats, avant et après">
     <div class="st-track" data-st-track>%(slides)s
     </div>
+    <span class="st-count mono" aria-hidden="true"><b data-st-cur>01</b> / %(total)02d</span>
     <div class="st-bar">
-      <span class="st-count mono" aria-hidden="true"><b data-st-cur>01</b> / %(total)02d</span>
       <button class="st-arrow" type="button" data-st-prev aria-label="Diapositive précédente">%(l)s</button>
       <button class="st-arrow" type="button" data-st-next aria-label="Diapositive suivante">%(r)s</button>
     </div>
@@ -640,20 +640,21 @@ def cabinet_about(B):
 
 # ------------------------------------------------------------------------------------------
 # Bloc « Prenez rendez-vous » avec l'anneau de photos qui tourne au scroll (page /blog/)
-# Photos fournies par le client (dossier assets/img/About _ Caliora...), copiées sous des noms propres
+# Photos libres de droits sur les thèmes de la référence
 # ------------------------------------------------------------------------------------------
-# anneau : photos fournies (issues du modèle Caliora)
-RING_IMGS = ['ring-brosse-fenetre.avif', 'ring-couple-brossage.avif', 'ring-rire.avif', 'ring-brosse-electrique.avif', 'ring-lavabo.avif', 'ring-brosse-bleu.avif']
+# anneau : photos libres de droits (CC0, StockSnap et Rawpixel), crédits dans tools/credits-photos.json
+RING_IMGS = ['ring-brosse-main.jpg', 'ring-couple.jpg', 'ring-sourire-serviette.jpg', 'ring-sourire.jpg', 'ring-salle-de-bain.jpg', 'ring-brosses-verre.jpg']
 
 def book_ring():
-    ring = ''.join('<figure class="ab-ring-img" style="--a:%ddeg"><img src="/assets/img/%s" alt="" loading="lazy"></figure>' % (i * 60, f)
+    """Photos dispersées autour du titre ; au scroll elles jaillissent du centre (effet de la page services du Cabinet Chorfi)."""
+    imgs = ''.join('<figure class="fl-img fl-%d"><img src="/assets/img/%s" alt="" loading="lazy"></figure>' % (i + 1, f)
                    for i, f in enumerate(RING_IMGS))
     return '''
-  <section class="ab-book" aria-labelledby="ab-book-h">
-    <div class="ab-ring" data-ab-ring aria-hidden="true"><span class="ab-ring-disc"></span>%s</div>
+  <section class="ab-book ab-book-fl" aria-labelledby="ab-book-h" data-fl>
+    <div class="fl-imgs" aria-hidden="true">%s</div>
     <div class="ab-book-c">
       <h2 id="ab-book-h">Prenez<br>rendez-vous</h2>
       <a class="ab-link" href="/contact/"><span>Planifier ma visite</span>%s<i aria-hidden="true"></i></a>
     </div>
   </section>
-''' % (ring, ARROW_UR)
+''' % (imgs, ARROW_UR)

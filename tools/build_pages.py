@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261001m'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261001y'          # version de dark.css / dark.js (cache navigateur)
 BOOK = 'https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112'
 MAPS = 'https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA'
 WA = 'https://wa.me/message/MDYCV375HLAJO1'
@@ -794,9 +794,9 @@ def legal_page(path, title, h1, sections, desc):
 def credits_html():
     p = os.path.join(ROOT, 'tools', 'credits-photos.json')
     items = json.load(open(p, encoding='utf-8')) if os.path.exists(p) else []
-    rows = ''.join('<li><b>%s</b> : « %s », %s, licence %s, <a href="%s" target="_blank" rel="noopener">Wikimedia Commons</a>.</li>'
+    rows = ''.join('<li><b>%s</b> : « %s », %s, licence %s, <a href="%s" target="_blank" rel="noopener">%s</a>.</li>'
                    % (H.escape(c['file']), H.escape(c['title'].replace('File:', '')), H.escape(c['author'] or 'auteur non précisé'),
-                      H.escape(c['license']), H.escape(c['url'])) for c in items)
+                      H.escape(c['license']), H.escape(c['url']), H.escape(c.get('source', 'Wikimedia Commons'))) for c in items)
     return '<ul>%s</ul>' % rows
 
 TODO = '<span class="legal-todo">[à compléter]</span>'
@@ -813,7 +813,7 @@ def mentions_page():
      ("Conception et réalisation", "<p>Site conçu et développé par MouaDev.</p>"),
      ("Hébergement", "<p>Le site est hébergé par Vercel Inc., États-Unis, <a href=\"https://vercel.com\" target=\"_blank\" rel=\"noopener\">vercel.com</a>.</p>"),
      ("Nature des informations", "<p>Les contenus de ce site sont fournis à titre d'information générale sur les soins proposés par le cabinet. Ils ne remplacent pas une consultation : seul un examen clinique permet d'établir un diagnostic et un plan de traitement adaptés. Aucun tarif n'est affiché ; un devis écrit est remis après la consultation.</p>"),
-     ("Propriété intellectuelle", "<p>Le logo, les textes et les photographies du cabinet sont la propriété du Centre Dentaire Chifaa. Toute reproduction sans autorisation écrite est interdite. Certaines photographies d'illustration proviennent de Wikimedia Commons et sont utilisées selon leur licence Creative Commons ou domaine public ; leurs auteurs sont crédités ci-dessous.</p>"),
+     ("Propriété intellectuelle", "<p>Le logo, les textes et les photographies du cabinet sont la propriété du Centre Dentaire Chifaa. Toute reproduction sans autorisation écrite est interdite. Certaines photographies d'illustration proviennent de Wikimedia Commons et de banques d'images libres (StockSnap, Rawpixel) et sont utilisées selon leur licence Creative Commons, CC0 ou domaine public ; leurs auteurs sont crédités ci-dessous.</p>"),
      ("Crédits photographiques", credits_html()),
      ("Liens externes", "<p>Le site contient des liens vers des services tiers : Google Maps, WhatsApp, Instagram et la plateforme de réservation Dentisto. Le cabinet n'est pas responsable du contenu de ces services.</p>"),
      ("Données personnelles", "<p>Le traitement des données personnelles est décrit dans notre <a href=\"/politique-de-confidentialite/\">politique de confidentialité</a>.</p>"),

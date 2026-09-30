@@ -1878,3 +1878,63 @@ a.tp-stat-v:hover { color: var(--sand); }
 /* crédit du concepteur : lien WhatsApp */
 a.foot-credit { transition: color .3s; }
 a.foot-credit:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* carrousel avant / après : compteur séparé des flèches */
+.st-count { position: absolute; z-index: 3; left: 32px; bottom: 50px; margin: 0; }
+.st-bar { justify-content: flex-end; }
+@media (max-width: 767px) {
+  .st-slider { height: 760px; }
+  .st-count { left: auto; right: 28px; bottom: auto; top: 346px; }  /* en haut à droite de la carte, à hauteur des pastilles */
+  .st-bar { justify-content: flex-start; padding: 0 20px 20px; }      /* flèches sous le bouton, à gauche (loin des boutons flottants) */
+  .st-vcard { padding-bottom: 88px; }
+}
+@media (max-width: 767px) { .st-slider { height: 740px; } .st-vcard { justify-content: flex-start; gap: 20px; } }
+
+/* mobile : bouton « Envoyer la demande » pleine largeur, contenu centré */
+@media (max-width: 767px) {
+  .tp-form-row .tp-submit { justify-content: center; gap: 12px; }
+}
+/* mobile : bandeau « Des soins dentaires de qualité » centré comme la référence */
+@media (max-width: 979px) {
+  .tp-cta-top { justify-items: center; text-align: center; gap: 24px; }
+  .tp-cta-copy h2 { margin-bottom: 12px; }
+  .tp-cta-list { justify-self: center; width: fit-content; max-width: 100%; text-align: left; }
+  .tp-cta-faces img { width: 88px; height: 88px; }
+  .tp-cta-faces img + img { margin-left: -18px; }
+  .tp-arc { margin-top: 12px; }
+  .tp-arc-svg { width: 170%; margin-left: -35%; }  /* texte courbe plus grand qui déborde des bords */
+}
+@media (max-width: 979px) { .tp-arc { margin-bottom: -7%; } }
+@media (max-width: 979px) { .tp-arc { margin-left: calc(-1 * clamp(20px, 4vw, 58px)); margin-right: calc(-1 * clamp(20px, 4vw, 58px)); } }
+@media (max-width: 979px) { .tp-arc-svg { width: 100%; margin-left: 0; } .tp-arc { margin-bottom: 0; } }  /* texte courbe entier et centré sur mobile */
+@media (max-width: 979px) { .tp-arc { margin-left: 0; margin-right: 0; margin-bottom: 8px; } }
+
+/* anneau réduit : les 6 photos restent entières dans la section (rayon + demi-diagonale d'une photo < demi-hauteur) */
+.ab-book { --ring: min(460px, calc(100vw - 48px)); }
+@media (max-width: 767px) { .ab-book { min-height: 520px; } .ab-book h2 { font-size: 34px; } .ab-link { font-size: 20px; } }
+@media (max-width: 767px) { .ab-book { --ring: 66vw; min-height: 440px; padding: 40px 12px; } .ab-book h2 { font-size: 26px; margin-bottom: 12px; } .ab-link { font-size: 16px; gap: 6px; } .ab-link svg { width: 18px; height: 18px; } }
+
+/* « Prenez rendez-vous » (blog) : photos dispersées autour du titre, positions et tailles de la référence */
+.ab-book-fl { min-height: clamp(520px, 42vw, 620px); }
+.fl-imgs { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.fl-img { position: absolute; margin: 0; overflow: hidden; border-radius: 24px; background: #0E3E68;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,.28), 0 4px 6px -4px rgba(0,0,0,.28); will-change: transform; }
+.fl-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fl-1 { top: 10%; left: 15%;   width: 128px; height: 128px; }
+.fl-2 { top: 8%;  right: 20%;  width: 112px; height: 112px; }
+.fl-3 { bottom: 20%; left: 10%; width: 144px; height: 144px; }
+.fl-4 { top: 33%; left: 4%;    width: 96px;  height: 96px; }  /* remontée : ne touche plus la photo 3 */
+.fl-5 { bottom: 42%; right: 10%; width: 128px; height: 128px; }
+.fl-6 { bottom: 15%; right: 12%; width: 112px; height: 112px; }
+.ab-book-fl .ab-book-c { z-index: 1; }
+/* mobile : les photos passent au-dessus et au-dessous du titre pour ne pas le couvrir */
+@media (max-width: 767px) {
+  .ab-book-fl { min-height: 600px; }
+  .fl-img { border-radius: 18px; }
+  .fl-1 { top: 4%;  left: 7%;   width: 88px; height: 88px; }
+  .fl-2 { top: 7%;  right: 9%;  width: 76px; height: 76px; }
+  .fl-4 { top: 22%; left: 36%;  width: 64px; height: 64px; }
+  .fl-3 { bottom: 5%; left: 8%; width: 96px; height: 96px; }
+  .fl-5 { bottom: 20%; right: 7%; width: 72px; height: 72px; }
+  .fl-6 { bottom: 4%; right: 24%; width: 80px; height: 80px; }
+}
