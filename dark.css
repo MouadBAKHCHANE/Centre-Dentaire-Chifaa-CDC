@@ -1953,3 +1953,12 @@ a.foot-credit:hover { color: var(--ink); text-decoration: underline; text-underl
 .m-phones a:hover, .m-phones a:active { color: var(--sand); }
 .m-phones .m-addr { align-items: flex-start; font: 400 16px/1.4 var(--font); color: var(--dim); margin-top: 4px; }
 .m-phones .m-addr svg { margin-top: 3px; flex: 0 0 auto; }
+
+/* en-tête : 6 onglets + bouton ne tiennent qu'à partir de 1100 px ; en dessous, menu burger */
+.pill { white-space: nowrap; }
+@media (max-width: 1099.98px) {  /* couvre aussi les largeurs fractionnaires (899,5 px…) */
+  .nav-pills { display: none; }
+  .burger { display: grid; }
+  .nav > .btn { display: none; }
+  .m-menu { display: flex; }
+}

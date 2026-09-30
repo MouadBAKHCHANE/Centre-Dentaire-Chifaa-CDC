@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261002b'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261002d'          # version de dark.css / dark.js (cache navigateur)
 BOOK = 'https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112'
 MAPS = 'https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA'
 WA = 'https://wa.me/message/MDYCV375HLAJO1'
@@ -559,7 +559,7 @@ def booking(checked=None, title='Planifiez votre visite'):
   </section>
 ''' % dict(title=title, tabs=tabs, orb=ORB,
            l1=clink('phone', '05 35 51 69 24', 'tel:+212535516924'),
-           l2=clink('phone', '06 36 43 22 14', 'tel:+212636432214'),
+           l2='',
            l3=clink(WA_IC, 'WhatsApp', WA, True),
            l4=clink('pin', 'Av des FAR, Meknès', MAPS, True))
 
@@ -692,7 +692,7 @@ def contact_page():
     ARROW = ('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" '
              'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7l-10 10"/><path d="M8 7h9v9"/></svg>')
     faqs = [
-        ("Comment prendre rendez-vous ?", "Appelez le cabinet au 05 35 51 69 24 ou au 06 36 43 22 14, écrivez-nous sur WhatsApp, remplissez le formulaire de cette page ou réservez directement en ligne sur Dentisto. Nous vous proposons un créneau aux horaires d'ouverture."),
+        ("Comment prendre rendez-vous ?", "Appelez le cabinet au 05 35 51 69 24, écrivez-nous sur WhatsApp, remplissez le formulaire de cette page ou réservez directement en ligne sur Dentisto. Nous vous proposons un créneau aux horaires d'ouverture."),
         ("Que faut-il apporter à la première consultation ?", "Votre pièce d'identité, vos radiographies ou comptes rendus récents s'ils existent, la liste de vos traitements en cours et, le cas échéant, les documents de votre mutuelle ou de votre assurance."),
         ("Que faire en cas d'urgence dentaire ?", "Appelez le cabinet pendant les horaires d'ouverture et expliquez la situation : douleur, dent cassée, gonflement. Nous faisons notre possible pour vous recevoir rapidement. En dehors des horaires, laissez-nous un message sur WhatsApp."),
         ("Le cabinet travaille-t-il avec les mutuelles et assurances ?", "Un devis écrit et détaillé vous est remis avant tout traitement. Nous vous fournissons les documents nécessaires pour vos démarches de remboursement auprès de votre mutuelle ou de votre assurance."),
@@ -748,7 +748,7 @@ def contact_page():
       <a class="lieu-card" href="tel:+212535516924" data-fade>
         <span class="lieu-title"><span class="lieu-h">Nous joindre</span><span class="lieu-arrow" aria-hidden="true">%(arrow)s</span></span>
         <span class="lieu-space" aria-hidden="true"></span>
-        <span class="lieu-address"><span>Fixe : 05 35 51 69 24</span><span>Mobile et WhatsApp : 06 36 43 22 14</span></span>
+        <span class="lieu-address"><span>Téléphone : 05 35 51 69 24</span><span>WhatsApp : message direct</span></span>
         <span class="lieu-hours"><span>Réservation en ligne sur Dentisto</span><span>Dimanche : fermé</span></span>
       </a>
     </div>
@@ -805,7 +805,7 @@ def mentions_page():
     s = [
      ("Éditeur du site", "<p>Le site www.centredentairechifaa.ma est édité par le Centre Dentaire Chifaa, cabinet de chirurgie dentaire du Dr Taoufik Boukadous.</p>"
       "<ul><li><b>Adresse</b> : Bureau N1, Imm Bureaux El Menzah N5, Av des FAR, Meknès 50000, Maroc</li>"
-      "<li><b>Téléphone</b> : 05 35 51 69 24 · 06 36 43 22 14</li>"
+      "<li><b>Téléphone</b> : 05 35 51 69 24</li>"
       "<li><b>E-mail</b> : %(t)s</li>"
       "<li><b>Identifiant commun de l'entreprise (ICE)</b> : %(t)s</li>"
       "<li><b>Inscription au Conseil national de l'Ordre des médecins dentistes</b> : %(t)s</li></ul>"
