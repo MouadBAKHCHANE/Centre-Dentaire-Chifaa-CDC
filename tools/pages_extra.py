@@ -93,7 +93,7 @@ def blog_index(B):
   <section class="cf-hero">
     <div class="ph ph-dark cf-hero-bg"><span class="ph-body"><span class="ph-label mono"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"/><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></svg>PHOTO À PRENDRE · PAYSAGE 21:9</span><span class="ph-title">Les gestes d'hygiène du quotidien</span><span class="ph-reco">Brosse à dents, fil dentaire et dentifrice posés près d'une fenêtre, lumière naturelle douce, fond clair. Laisser le centre et le bas de l'image calmes : le grand titre « BLOG » s'y superpose.</span></span></div>
     <span class="cf-hero-tint" aria-hidden="true"></span>
-    <h1 class="cf-hero-title"><span class="sr-only">Blog dentaire du Centre Dentaire Chifaa : </span>Blog</h1>
+    <h1 class="cf-hero-title"><span class="sr-only">Le </span>Blog<span class="sr-only"> dentaire du Centre Dentaire Chifaa, dentiste à Meknès</span></h1>
   </section>
 ''' + featured(B, ARTICLES[2:] + ARTICLES[:2]) + '''
   <section class="bl-all" aria-label="Articles">
@@ -110,8 +110,8 @@ def blog_index(B):
          "blogPost": [{"@type": "BlogPosting", "headline": a['title'], "url": B.SITE + art_url(a), "datePublished": DATE_ISO} for a in ARTICLES]},
         B.DENTIST,
         B.crumbs([('Accueil', '/'), ('Blog', path)])]}
-    return (path, "Blog dentaire | Conseils du Centre Dentaire Chifaa, dentiste à Meknès",
-            "Conseils et informations sur les soins dentaires à Meknès : implants, orthodontie, dents de sagesse, gencives, soins des enfants. Par l'équipe du Centre Dentaire Chifaa.",
+    return (path, "Blog dentaire : conseils d'un dentiste à Meknès | CDC",
+            "Conseils d'un cabinet dentaire de Meknès : implants, orthodontie, dents de sagesse, gencives et soins des enfants, expliqués simplement.",
             'cabinet-couloir-meknes.jpg', ld, body)
 
 
@@ -172,8 +172,8 @@ def article(B, a):
          "publisher": {"@id": B.SITE + "/#cabinet"}, "mainEntityOfPage": B.SITE + path, "isPartOf": {"@id": B.SITE + "/blog/#blog"}},
         B.DENTIST,
         B.crumbs([('Accueil', '/'), ('Blog', '/blog/'), (a['title'], path)])]}
-    desc = a['lead'] if len(a['lead']) <= 160 else a['lead'][:157].rsplit(' ', 1)[0] + '…'
-    return (path, "%s | Centre Dentaire Chifaa, Meknès" % a['title'], desc, a['img'], ld, body)
+    desc = a['lead'] if len(a['lead']) <= 155 else a['lead'][:152].rsplit(' ', 1)[0] + '…'
+    return (path, "%s | CDC Meknès" % a.get('seo', a['title']), desc, a['img'], ld, body)
 
 
 # ------------------------------------------------------------------------------------------
@@ -262,7 +262,7 @@ def equipment(B):
       <div class="eq-card" data-eq-card>
         <img class="eq-bg" src="/assets/img/cabinet-salle-de-soins-meknes.jpg" alt="" fetchpriority="high" data-eq-bg>
         <span class="eq-tint" aria-hidden="true"></span>
-        <h1 class="eq-title" data-eq-title>Équipements</h1>
+        <h1 class="eq-title" data-eq-title>Équipements<span class="sr-only"> du Centre Dentaire Chifaa à Meknès : radiologie 3D et empreinte numérique</span></h1>
         <p class="eq-words" aria-hidden="true"><span data-eq-word>Technologie</span><span data-eq-word>Précision</span><span data-eq-word>Confort</span></p>
       </div>
     </div>
@@ -284,8 +284,8 @@ def equipment(B):
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "WebPage", "url": B.SITE + path, "name": "Équipements – Centre Dentaire Chifaa", "about": B.DENTIST},
         B.crumbs([('Accueil', '/'), ('Équipements', path)])]}
-    return (path, "Équipements | Radiologie 3D et empreinte numérique – Centre Dentaire Chifaa, Meknès",
-            "Le plateau technique du Centre Dentaire Chifaa à Meknès : radiologie panoramique et 3D sur place, empreinte numérique, salle de soins moderne et stérilisation en autoclave.",
+    return (path, "Radiologie 3D et équipements dentaires à Meknès | CDC",
+            "Radiologie panoramique et 3D sur place, empreinte numérique, salle de soins moderne et stérilisation en autoclave au Centre Dentaire Chifaa, Meknès.",
             'cabinet-radiologie-3d-meknes.jpg', ld, body)
 
 
@@ -425,8 +425,8 @@ def soins_hub(B):
              {"@type": "ListItem", "position": i + 1, "name": "%s à Meknès" % B.SOIN_NAME[s], "url": B.SITE + "/soins/%s-meknes/" % s}
              for i, s in enumerate(B.SOINS_ORDER)]}},
         B.crumbs([('Accueil', '/'), ('Nos soins', path)])]}
-    return (path, "Soins dentaires à Meknès | Centre Dentaire Chifaa – Dr Boukadous",
-            "Orthodontie, implants dentaires, chirurgie orale, parodontie, prothèse et pédodontie à Meknès : six spécialités réunies au Centre Dentaire Chifaa, Av des FAR. Devis écrit avant chaque soin.",
+    return (path, "Soins dentaires à Meknès | Centre Dentaire Chifaa",
+            "Orthodontie, implants, chirurgie orale, parodontie, prothèse et pédodontie : six spécialités au Centre Dentaire Chifaa, Meknès. Devis écrit.",
             'sourire-apres-orthodontie-meknes.jpg', ld, body)
 
 
@@ -633,8 +633,8 @@ def cabinet_about(B):
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "AboutPage", "url": B.SITE + path, "name": "Le cabinet – Centre Dentaire Chifaa", "about": B.DENTIST},
         B.crumbs([('Accueil', '/'), ('Le cabinet', path)])]}
-    return (path, "Le cabinet | Centre Dentaire Chifaa, dentiste à Meknès – Dr Boukadous",
-            "Le Centre Dentaire Chifaa à Meknès : un centre pluridisciplinaire avenue des FAR, avec radiologie 3D sur place, empreinte numérique et six spécialités réunies. Dr Taoufik Boukadous.",
+    return (path, "Le cabinet | Centre Dentaire Chifaa, dentiste à Meknès",
+            "Le Centre Dentaire Chifaa du Dr Taoufik Boukadous, avenue des FAR à Meknès : six spécialités, radiologie 3D sur place et empreinte numérique.",
             'reception-cabinet-cdc-meknes.jpg', ld, body)
 
 

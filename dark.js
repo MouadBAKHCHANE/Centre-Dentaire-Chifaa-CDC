@@ -384,7 +384,7 @@
     if (imgs.length < 2) return;
     var dots = document.createElement('div');
     dots.className = 's-dots';
-    dots.setAttribute('role', 'tablist');
+    dots.setAttribute('role', 'group');
     dots.setAttribute('aria-label', 'Photos');
     var btns = [];
     imgs.forEach(function (img, k) {

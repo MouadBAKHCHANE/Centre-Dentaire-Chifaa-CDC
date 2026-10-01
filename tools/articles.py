@@ -12,6 +12,7 @@ DATE_FR = "30 septembre 2026"
 ARTICLES = [
  dict(
   slug="implant-dentaire-meknes-etapes-duree",
+  seo="Implant dentaire : étapes, durée et devis",
   title="Implant dentaire : les étapes, la durée et ce qui fait varier le devis",
   cat="Implantologie", soin="implants-dentaires",
   img="implants-dentaires-3d.jpg", alt="Deux implants dentaires avec leurs couronnes",
@@ -35,6 +36,7 @@ ARTICLES = [
   ]),
  dict(
   slug="aligneurs-ou-bagues-que-choisir",
+  seo="Aligneurs ou bagues : que choisir ?",
   title="Aligneurs invisibles ou bagues : que choisir pour aligner ses dents ?",
   cat="Orthodontie", soin="orthodontie",
   img="orthodontie-bagues-aligneurs-meknes.jpg", alt="Bagues métalliques et aligneurs invisibles côte à côte",
@@ -55,6 +57,7 @@ ARTICLES = [
   ]),
  dict(
   slug="enfant-peur-du-dentiste",
+  seo="Mon enfant a peur du dentiste : que faire ?",
   title="Mon enfant a peur du dentiste : comment l'aider",
   cat="Pédodontie", soin="pedodontie",
   img="examen-dentaire-enfant.jpg", alt="Examen dentaire d'un enfant avec des gants",
@@ -74,6 +77,7 @@ ARTICLES = [
   ]),
  dict(
   slug="dents-de-sagesse-quand-les-enlever",
+  seo="Dents de sagesse : faut-il les enlever ?",
   title="Dents de sagesse : faut-il toujours les enlever ?",
   cat="Chirurgie orale", soin="chirurgie-orale",
   img="radio-panoramique-dents-sagesse.jpg", alt="Radiographie panoramique des mâchoires et des dents de sagesse",
@@ -93,6 +97,7 @@ ARTICLES = [
   ]),
  dict(
   slug="dechaussement-des-dents-signes",
+  seo="Déchaussement des dents : les signes d'alerte",
   title="Déchaussement des dents : les signes qui doivent alerter",
   cat="Parodontie", soin="parodontie",
   img="parodontie-detartrage-avant-apres.jpg", alt="Dents avant et après un détartrage",
@@ -112,6 +117,7 @@ ARTICLES = [
   ]),
  dict(
   slug="hygiene-bucco-dentaire-ramadan",
+  seo="Hygiène dentaire pendant le Ramadan",
   title="Hygiène bucco-dentaire pendant le Ramadan : nos conseils",
   cat="Prévention", soin="parodontie",
   img="gencives-saines-parodontie.jpg", alt="Gencives avant et après le traitement d'une gingivite",

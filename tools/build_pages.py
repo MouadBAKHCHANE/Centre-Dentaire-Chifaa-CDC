@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261002j'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261003a'          # version de dark.css / dark.js (cache navigateur)
 BOOK = 'https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112'
 MAPS = 'https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA'
 WA = 'https://wa.me/message/MDYCV375HLAJO1'
@@ -57,8 +57,8 @@ SOIN_NAME = {'orthodontie': 'Orthodontie', 'implants-dentaires': 'Implants denta
 # --------------------------------------------------------------------------------------------
 SOINS = {
  'orthodontie': dict(
-  title="Orthodontie à Meknès | Aligneurs & bagues – Centre Dentaire Chifaa",
-  desc="Orthodontiste à Meknès : aligneurs invisibles, bagues métalliques et céramiques, orthodontie enfants et adultes. Dr Boukadous, Av des FAR. Devis écrit, noté 5,0/5 sur Google. Tél 05 35 51 69 24.",
+  title="Orthodontie à Meknès | Aligneurs & bagues – CDC",
+  desc="Orthodontiste à Meknès : aligneurs invisibles, bagues métalliques ou céramiques, pour enfants et adultes. Devis écrit, noté 5,0/5. Tél 05 35 51 69 24.",
   h1="Orthodontiste à Meknès,<br>pour un sourire aligné.",
   hero=('orthodontie-bagues-aligneurs-meknes.jpg', 1200, 655),
   gallery=[('orthodontie-bagues-dents-meknes.jpg', "Bagues orthodontiques sur les dents, orthodontie à Meknès"),
@@ -102,8 +102,8 @@ SOINS = {
  ),
 
  'implants-dentaires': dict(
-  title="Implant dentaire à Meknès | Unitaire, All-on-4 – Centre Dentaire Chifaa",
-  desc="Implants dentaires à Meknès : implant unitaire, bridge sur implants, All-on-4 et greffe osseuse, planifiés sur radiographie 3D. Dr Boukadous, Av des FAR. Devis écrit. Tél 05 35 51 69 24.",
+  title="Implant dentaire à Meknès | Unitaire, All-on-4 – CDC",
+  desc="Implants dentaires à Meknès : implant unitaire, bridge, All-on-4 et greffe osseuse, planifiés en radiographie 3D. Devis écrit. Tél 05 35 51 69 24.",
   h1="Implants dentaires à Meknès,<br>pour une dentition fixe.",
   hero=('implant-dentaire-pose-meknes.jpg', 1024, 768),
   gallery=[('implant-unitaire-couronne-3d.jpg', "Implant unitaire avec pilier et couronne"),
@@ -148,8 +148,8 @@ SOINS = {
  ),
 
  'chirurgie-orale': dict(
-  title="Chirurgie orale à Meknès | Dents de sagesse, extractions – Centre Dentaire Chifaa",
-  desc="Chirurgie orale à Meknès : extraction des dents de sagesse, extractions complexes, chirurgie pré-implantaire et guidée, sous anesthésie locale au cabinet. Dr Boukadous, Av des FAR. Tél 05 35 51 69 24.",
+  title="Chirurgie orale à Meknès | Dents de sagesse – CDC",
+  desc="Chirurgie orale à Meknès : dents de sagesse, extractions complexes et chirurgie pré-implantaire, sous anesthésie locale. Tél 05 35 51 69 24.",
   h1="Chirurgie orale à Meknès,<br>au cabinet, sous anesthésie locale.",
   hero=('chirurgie-orale-extraction-3d.jpg', 800, 600),
   gallery=[('radio-panoramique-dents-sagesse.jpg', "Radiographie panoramique des mâchoires et des dents de sagesse"),
@@ -194,8 +194,8 @@ SOINS = {
  ),
 
  'parodontie': dict(
-  title="Parodontie à Meknès | Gencives, déchaussement – Centre Dentaire Chifaa",
-  desc="Parodontie à Meknès : saignement des gencives, gingivite, déchaussement et dents qui bougent. Bilan parodontal, détartrage, surfaçage et suivi. Dr Boukadous, Av des FAR. Tél 05 35 51 69 24.",
+  title="Parodontie à Meknès | Gencives, déchaussement – CDC",
+  desc="Parodontie à Meknès : gencives qui saignent, déchaussement, dents qui bougent. Bilan, détartrage, surfaçage et suivi. Tél 05 35 51 69 24.",
   h1="Parodontie à Meknès,<br>des gencives saines et solides.",
   hero=('3d-cosmetic.jpg', 900, 900),
   gallery=[('parodontie-detartrage-avant-apres.jpg', "Dents avant et après un détartrage"),
@@ -239,8 +239,8 @@ SOINS = {
  ),
 
  'prothese-dentaire': dict(
-  title="Prothèse dentaire à Meknès | Couronnes, facettes, bridges – Centre Dentaire Chifaa",
-  desc="Prothèse dentaire à Meknès : couronnes céramique et zircone, facettes, bridges et prothèses amovibles, conçues par empreinte numérique. Dr Boukadous, Av des FAR. Devis écrit. Tél 05 35 51 69 24.",
+  title="Prothèse dentaire à Meknès | Couronnes, bridges – CDC",
+  desc="Prothèse dentaire à Meknès : couronnes céramique et zircone, facettes, bridges et prothèses amovibles, par empreinte numérique. Devis écrit.",
   h1="Prothèse dentaire à Meknès,<br>couronnes, facettes et bridges.",
   hero=('facette-ceramique-pose-meknes.jpg', 960, 960),
   gallery=[('facettes-ceramiques-resultat-meknes.jpg', "Facettes céramiques posées, résultat final"),
@@ -285,8 +285,8 @@ SOINS = {
  ),
 
  'pedodontie': dict(
-  title="Dentiste enfant à Meknès | Pédodontie – Centre Dentaire Chifaa",
-  desc="Dentiste pour enfants à Meknès : première visite, prévention des caries, vernis fluoré, scellement des sillons et soins des dents de lait, dans le calme. Dr Boukadous, Av des FAR. Tél 05 35 51 69 24.",
+  title="Dentiste enfant à Meknès | Pédodontie – CDC",
+  desc="Dentiste pour enfants à Meknès : première visite, prévention des caries, vernis fluoré et soins des dents de lait, dans le calme. Tél 05 35 51 69 24.",
   h1="Pédodontie à Meknès,<br>des soins doux pour les enfants.",
   hero=('examen-dentaire-enfant.jpg', 1400, 933),
   gallery=[('dents-de-lait-enfant.jpg', "Sourire d'enfant avec des dents de lait qui tombent"),
@@ -381,12 +381,13 @@ def head(title, desc, path, og_img, jsonld, noindex=False):
 <meta property="og:image" content="%(site)s/assets/img/%(img)s">
 <meta property="og:url" content="%(url)s">
 <meta property="og:locale" content="fr_MA">
+<meta property="og:site_name" content="Centre Dentaire Chifaa">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
 %(ld)s
 </script>
@@ -412,7 +413,8 @@ DENTIST = {"@type": "Dentist", "@id": SITE + "/#cabinet", "name": "Centre Dentai
            "address": {"@type": "PostalAddress", "streetAddress": "Bureau N1, Imm Bureaux El Menzah N5, Av des FAR",
                        "addressLocality": "Meknès", "postalCode": "50000", "addressCountry": "MA"},
            "geo": {"@type": "GeoCoordinates", "latitude": 33.8947626, "longitude": -5.5497537},
-           "url": SITE + "/", "hasMap": MAPS,
+           "url": SITE + "/", "hasMap": MAPS, "logo": SITE + "/assets/logo-cdc-light.png",
+           "image": SITE + "/assets/img/og-centre-dentaire-chifaa.jpg", "medicalSpecialty": "https://schema.org/Dentistry",
            "openingHoursSpecification": [
                {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:30", "closes": "17:30"},
                {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:30"}],
@@ -680,8 +682,8 @@ def cabinet_page():
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "AboutPage", "url": SITE + path, "name": "Le cabinet – Centre Dentaire Chifaa", "about": DENTIST},
         crumbs([('Accueil', '/'), ('Le cabinet', path)])]}
-    return (path, "Le cabinet | Centre Dentaire Chifaa, dentiste à Meknès – Dr Boukadous",
-            "Le Centre Dentaire Chifaa à Meknès : un centre pluridisciplinaire avenue des FAR, avec radiologie 3D sur place, empreinte numérique et six spécialités réunies. Dr Taoufik Boukadous.",
+    return (path, "Le cabinet | Centre Dentaire Chifaa, dentiste à Meknès",
+            "Le Centre Dentaire Chifaa du Dr Taoufik Boukadous, avenue des FAR à Meknès : six spécialités, radiologie 3D sur place et empreinte numérique.",
             'reception-cabinet-cdc-meknes.jpg', ld, body)
 
 def contact_page():
@@ -718,7 +720,7 @@ def contact_page():
   <section class="cf-hero">
     <img class="cf-hero-bg" src="/assets/img/contact-hero-brosse-a-dents.jpg" alt="Main tendant une brosse à dents électrique vers une autre main, sur fond bleu" fetchpriority="high">
     <span class="cf-hero-tint" aria-hidden="true"></span>
-    <h1 class="cf-hero-title">Contact</h1>
+    <h1 class="cf-hero-title">Contact<span class="sr-only"> du Centre Dentaire Chifaa, dentiste à Meknès</span></h1>
   </section>
 ''' + booking(title='Planifiez votre visite') + '''
   <section class="cf-map" aria-label="Trouver le cabinet">
@@ -765,8 +767,8 @@ def contact_page():
         {"@type": "ContactPage", "url": SITE + path, "name": "Contact – Centre Dentaire Chifaa", "about": DENTIST},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in faqs]},
         crumbs([('Accueil', '/'), ('Contact', path)])]}
-    return (path, "Contact | Dentiste à Meknès – Centre Dentaire Chifaa, Av des FAR",
-            "Contactez le Centre Dentaire Chifaa à Meknès : 05 35 51 69 24, WhatsApp, formulaire de rendez-vous. Av des FAR, Imm El Menzah N5. Lun-ven 8h30-17h30, sam 9h00-14h30.",
+    return (path, "Contact | Centre Dentaire Chifaa, dentiste à Meknès",
+            "Centre Dentaire Chifaa, Av des FAR à Meknès : 05 35 51 69 24, WhatsApp ou formulaire. Lun-ven 8h30-17h30, sam 9h00-14h30.",
             'reception-cabinet-cdc-meknes.jpg', ld, body)
 
 def legal_page(path, title, h1, sections, desc):
@@ -843,12 +845,32 @@ def write(page, header, footer, fabs):
     words = len(re.sub(r'<script.*?</script>|<[^>]+>', ' ', body, flags=re.S).split())
     print('%-38s %5d mots' % (path, words))
 
+def lastmods(urls):
+    """Date du dernier changement réel de chaque page, mémorisée dans tools/lastmod.json."""
+    import hashlib, datetime
+    store_path = os.path.join(ROOT, 'tools', 'lastmod.json')
+    try:
+        store = json.load(open(store_path, encoding='utf-8'))
+    except (OSError, ValueError):
+        store = {}
+    today = datetime.date.today().isoformat()
+    out = {}
+    for p in urls:
+        f = os.path.join(ROOT, p.strip('/').replace('/', os.sep), 'index.html')
+        html = re.sub(r'\?v=[0-9a-z]+', '', open(f, encoding='utf-8').read())
+        h = hashlib.sha1(html.encode('utf-8')).hexdigest()
+        if store.get(p, {}).get('hash') != h:
+            store[p] = {'hash': h, 'date': today}
+        out[p] = store[p]['date']
+    json.dump(store, open(store_path, 'w', encoding='utf-8'), indent=1, sort_keys=True)
+    return out
+
 def sitemap(paths):
-    urls = ['/'] + paths
+    urls = ['/'] + [p for p in paths if p not in ('/mentions-legales/', '/politique-de-confidentialite/')]
     pri = {'/': '1.0'}
-    items = ''.join('  <url><loc>%s%s</loc><changefreq>monthly</changefreq><priority>%s</priority></url>\n'
-                    % (SITE, p, pri.get(p, '0.9' if p.startswith('/soins/') else '0.7' if p.startswith('/blog/') else '0.6')) for p in urls
-                    if p not in ('/mentions-legales/', '/politique-de-confidentialite/'))
+    mod = lastmods(urls)
+    items = ''.join('  <url><loc>%s%s</loc><lastmod>%s</lastmod><changefreq>monthly</changefreq><priority>%s</priority></url>\n'
+                    % (SITE, p, mod[p], pri.get(p, '0.9' if p.startswith('/soins/') else '0.7' if p.startswith('/blog/') else '0.6')) for p in urls)
     open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8').write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s</urlset>\n' % items)
 
