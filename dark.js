@@ -51,12 +51,20 @@
         document.removeEventListener(ev, onFirst);
       }, { passive: true });
     });
+    var userPaused = false;
     toggle.addEventListener('click', function () {
       var paused = vid.paused;
+      userPaused = !paused;
       if (paused) vid.play(); else vid.pause();
       toggle.setAttribute('aria-pressed', paused ? 'false' : 'true');
       toggle.setAttribute('aria-label', paused ? 'Mettre la vidéo en pause' : 'Lire la vidéo');
     });
+    /* hors écran, la vidéo ne tourne plus : le décodage continu ralentissait le défilement */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { if (!userPaused) tryPlay(); } else vid.pause();
+      }).observe(vid);
+    }
   }
 
   /* ---------- menu mobile (burger) ---------- */

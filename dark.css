@@ -108,7 +108,7 @@ h1, h2, h3 { text-wrap: balance; }
   transition: opacity .4s;
 }
 .nav.is-scrolled::before { opacity: 0; }
-.nav.is-scrolled { background: rgba(20, 16, 13, .86); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+.nav.is-scrolled { background: rgba(20, 16, 13, .95); box-shadow: 0 1px 0 var(--line); }
 .nav-logo img { display: block; height: 48px; width: auto; }
 .nav-pills { display: none; gap: 4px; }
 @media (min-width: 900px) {
