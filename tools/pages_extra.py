@@ -418,7 +418,7 @@ def soins_hub(B):
       <button class="st-arrow" type="button" data-st-next aria-label="Diapositive suivante">%(r)s</button>
     </div>
   </section>
-''' % dict(slides=slides, l=ARR_L, r=ARR_R, total=len(HUB_SLIDES)) + B.booking(title='Planifiez votre visite') + B.cta_arc() + '\n</main>\n'
+''' % dict(slides=slides, l=ARR_L, r=ARR_R, total=len(HUB_SLIDES)) + B.cta_arc() + '\n</main>\n'
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "CollectionPage", "url": B.SITE + path, "name": "Soins dentaires à Meknès – Centre Dentaire Chifaa", "about": B.DENTIST,
          "mainEntity": {"@type": "ItemList", "itemListElement": [

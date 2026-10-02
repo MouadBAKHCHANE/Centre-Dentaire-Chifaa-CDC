@@ -2036,3 +2036,14 @@ h2.qs-tag { margin: 0; font-weight: inherit; line-height: inherit; }
   .tp-book-solo .tp-book-copy { align-items: center; text-align: center; margin-bottom: 0; }
   .tp-book-solo .tp-book-links { align-items: center; }
 }
+
+/* bandeau « Des soins dentaires de qualité » : coordonnées intégrées (téléphone, WhatsApp, adresse, horaires) */
+.tp-cta {
+  --bk-ink: #151210; --bk-strong: #2B241F; --bk-300: #B1A095; --bk-dark10: rgba(4,19,31,.1);
+}
+.tp-cta-contact { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: clamp(28px, 3.5vw, 44px); text-align: center; }
+.tp-cta-contact .tp-book-links { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+.tp-cta-contact .tp-book-hours { max-width: none; }
+@media (max-width: 767px) {
+  .tp-cta-contact .tp-book-links { flex-direction: column; align-items: center; }
+}

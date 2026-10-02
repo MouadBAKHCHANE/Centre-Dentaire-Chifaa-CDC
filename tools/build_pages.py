@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261003d'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261003e'          # version de dark.css / dark.js (cache navigateur)
 BOOK = 'https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112'
 MAPS = 'https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA'
 WA = 'https://wa.me/message/MDYCV375HLAJO1'
@@ -469,11 +469,11 @@ def meta_aside(groups):
 
 def cta_arc():
     return '''
-  <section class="tp-cta">
+  <section class="tp-cta" id="rendez-vous">
     <div class="tp-cta-top">
       <div class="tp-cta-copy">
         <h2>Des soins dentaires<br>de qualité, à Meknès</h2>
-        <a class="tp-cta-link" href="#rendez-vous">Prendre rendez-vous<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6l-6 6"/></svg></a>
+        <a class="tp-cta-link" href="%(book)s" target="_blank" rel="noopener">Prendre rendez-vous<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6l-6 6"/></svg></a>
       </div>
       <div class="tp-cta-faces" aria-hidden="true">
         <img src="/assets/img/cabinet-salle-de-soins-meknes.jpg" alt="" loading="lazy">
@@ -486,14 +486,25 @@ def cta_arc():
         <li><span class="tp-cta-chk" aria-hidden="true"></span>Spécialistes sur place, sans orientation extérieure</li>
       </ul>
     </div>
+    <div class="tp-cta-contact" data-fade>
+      <div class="tp-book-links">
+        %(l1)s
+        %(l3)s
+        %(l4)s
+      </div>
+      <p class="tp-book-hours">Lundi au vendredi de 8h30 à 17h30, samedi de 9h00 à 14h30.</p>
+    </div>
     <div class="tp-arc" aria-hidden="true">
       <svg class="tp-arc-svg" viewBox="0 95 1600 317" preserveAspectRatio="xMidYMid meet" data-arc>
         <defs><path id="tp-arc-path" d="M -60 440 Q 800 -70 1660 440" fill="none"/></defs>
-        <text class="tp-arc-text" text-anchor="middle"><textPath href="#tp-arc-path" startOffset="50%">Prendre rendez-vous<tspan class="tp-arc-sep">  –  </tspan>Prendre rendez-vous</textPath></text>
+        <text class="tp-arc-text" text-anchor="middle"><textPath href="#tp-arc-path" startOffset="50%%">Prendre rendez-vous<tspan class="tp-arc-sep">  –  </tspan>Prendre rendez-vous</textPath></text>
       </svg>
     </div>
   </section>
-'''
+''' % dict(book=BOOK,
+           l1=clink('phone', '05 35 51 69 24', 'tel:+212535516924'),
+           l3=clink(WA_IC, 'WhatsApp', WA, True),
+           l4=clink('pin', 'Av des FAR, Meknès', MAPS, True))
 
 def clink(icon, text, href, ext=False):
     t = ' rel="noopener" target="_blank"' if ext else ''
@@ -630,7 +641,7 @@ def soin_page(slug):
   </section>
 ''' % dict(meta=meta_aside(d['meta']), h2=d['h2'], intro=intro, who_h=d['who_h'], who_p=d['who_p'], who=who,
            treat_h=d['treat_h'], treat=treat, steps=steps, price=d['price'], faq=faq, rel=rel) \
-        + cta_arc() + booking(checked=slug) + '\n</main>\n'
+        + cta_arc() + '\n</main>\n'
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "MedicalProcedure", "@id": SITE + path + "#procedure", "name": "%s à Meknès" % name,
          "description": d['proc_desc'], "procedureType": "https://schema.org/" + d['proc_type'],
@@ -685,7 +696,7 @@ def cabinet_page():
 ''' % dict(meta=meta_aside([[('pin', 'ADRESSE', 'Av des FAR, Meknès'), ('clock', 'LUN – VEN', '8h30 – 17h30'), ('cal', 'SAMEDI', '9h00 – 14h30')],
                              [('shield', 'SPÉCIALITÉS', '6 réunies'), ('scan', 'RADIOLOGIE', '2D et 3D sur place'), ('user', 'PRATICIEN', 'Dr T. Boukadous')]]),
            specs=specs, maps=MAPS) \
-        + lieu('accueil-cabinet-cdc-meknes.jpg', "Bureau du Centre Dentaire Chifaa et mur au logo CDC") + cta_arc() + booking() + '\n</main>\n'
+        + lieu('accueil-cabinet-cdc-meknes.jpg', "Bureau du Centre Dentaire Chifaa et mur au logo CDC") + cta_arc() + '\n</main>\n'
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "AboutPage", "url": SITE + path, "name": "Le cabinet – Centre Dentaire Chifaa", "about": DENTIST},
         crumbs([('Accueil', '/'), ('Le cabinet', path)])]}
