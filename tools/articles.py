@@ -47,8 +47,8 @@ ARTICLES = [
    ("Les aligneurs invisibles", [
      "Ce sont des gouttières transparentes, réalisées sur mesure à partir d'une empreinte numérique. Elles se changent toutes les une à deux semaines et déplacent les dents progressivement. Leur grand avantage est la discrétion : elles se voient très peu et s'enlèvent pour manger et se brosser les dents.",
      "La contrepartie, c'est la rigueur. Pour fonctionner, elles doivent être portées 20 à 22 heures par jour. Un aligneur oublié dans sa boîte ne déplace aucune dent."], []),
-   ("Les bagues, métalliques ou céramiques", [
-     "L'appareil multi-attaches est collé sur les dents et relié par un fil. Il agit en permanence, sans dépendre de l'assiduité du patient, et permet de contrôler précisément les mouvements les plus difficiles. Les bagues en céramique, de la couleur de la dent, sont une alternative plus discrète au métal."], []),
+   ("Les bagues métalliques", [
+     "L'appareil multi-attaches est collé sur les dents et relié par un fil. Il agit en permanence, sans dépendre de l'assiduité du patient, et permet de contrôler précisément les mouvements les plus difficiles."], []),
    ("Comment choisir", [
      "Le choix se fait après un examen, jamais sur catalogue. Quelques repères :"],
     ["Pour un encombrement léger à modéré chez l'adulte, les aligneurs conviennent souvent très bien", "Pour un décalage important des mâchoires ou des dents à faire tourner fortement, les bagues sont souvent préférables", "Si vous savez que vous oublierez de porter vos gouttières, les bagues sont plus sûres", "Chez l'enfant et l'adolescent, le choix dépend aussi de la croissance"]),

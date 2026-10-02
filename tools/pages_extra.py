@@ -300,7 +300,7 @@ def pages(B):
 # ------------------------------------------------------------------------------------------
 HUB_CARDS = [
     ('orthodontie', "Alignement", 'orthodontie-bagues-aligneurs-meknes.jpg', "Bagues métalliques et aligneurs transparents côte à côte",
-     "Aligneurs invisibles et bagues métalliques ou céramiques, pour les adultes, les adolescents et les enfants. Chaque traitement est planifié en numérique."),
+     "Aligneurs invisibles et bagues métalliques, pour les adultes, les adolescents et les enfants. Chaque traitement est planifié en numérique."),
     ('implants-dentaires', "Remplacement", 'implant-dentaire-pose-meknes.jpg', "Implant dentaire et sa couronne en place entre deux dents",
      "Implant unitaire, bridge sur implants ou arcade complète, pour remplacer une ou plusieurs dents de façon fixe et durable."),
     ('chirurgie-orale', "Chirurgie", 'chirurgie-orale-extraction-3d.jpg', "Illustration 3D de l'extraction d'une dent",
