@@ -2006,3 +2006,33 @@ a.foot-credit:hover { color: var(--ink); text-decoration: underline; text-underl
 
 /* « Qui sommes-nous ? » devient un vrai h2 (ordre des titres) sans changer son apparence */
 h2.qs-tag { margin: 0; font-weight: inherit; line-height: inherit; }
+
+/* rendez-vous sans formulaire : titre à gauche, coordonnées et horaires à droite */
+@media (min-width: 992px) {
+  .tp-book.tp-book-solo { grid-template-columns: 1fr; }
+  .tp-book-solo .tp-book-copy {
+    position: static; max-width: 1100px; margin: 0 auto; padding: clamp(8px, 1.5vw, 20px) 0;
+    display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 48px; row-gap: 14px;
+  }
+  .tp-book-solo .tp-book-copy h2 { grid-row: span 2; }
+  .tp-book-solo .tp-book-links { flex-direction: row; flex-wrap: wrap; }
+  .tp-book-solo .tp-book-hours { max-width: none; }
+}
+
+/* soins : avant / après moins haut sur ordinateur, photos moins recadrées */
+@media (min-width: 768px) { .st-slider { height: clamp(420px, 31vw, 480px); } }
+
+/* héros des pages soins sur mobile : moins haut (chiffres sur une ligne), la photo est moins zoomée */
+@media (max-width: 699px) {
+  .tp-hero { min-height: 0; padding-top: 96px; }
+  .tp-stats { grid-template-columns: repeat(3, 1fr); gap: 0 10px; margin-top: 36px; }
+  .tp-stat { gap: 8px; padding-bottom: 18px; align-content: start; }
+  .tp-stat-l { font-size: 9.5px; letter-spacing: .1em; line-height: 1.3; padding-top: 14px; min-height: calc(2.6em + 14px); }
+  .tp-stat-v { font-size: 24px; }
+}
+
+/* rendez-vous sans formulaire, mobile : centré comme « Trouver le cabinet » */
+@media (max-width: 991px) {
+  .tp-book-solo .tp-book-copy { align-items: center; text-align: center; margin-bottom: 0; }
+  .tp-book-solo .tp-book-links { align-items: center; }
+}

@@ -32,8 +32,8 @@
   "hash": "491c40fc6aef462c7d9279ae1cfa37e26be32c55"
  },
  "/contact/": {
-  "date": "2026-10-01",
-  "hash": "72e3882c014226213779c07a990f1012387193ea"
+  "date": "2026-10-02",
+  "hash": "d8cf58c84b0d08ee2f0e4ad0caf3453c604457f3"
  },
  "/equipements/": {
   "date": "2026-10-01",
@@ -45,30 +45,30 @@
  },
  "/soins/": {
   "date": "2026-10-02",
-  "hash": "a4b9b596dceb9d2aa84c7729bcbcf252288a3cfe"
+  "hash": "b7a67a0c6a876ac12ac3739ec78b1c901ea70053"
  },
  "/soins/chirurgie-orale-meknes/": {
-  "date": "2026-10-01",
-  "hash": "d50b6f4b153265d2ed4ee4fb11344c1fb126a9b8"
+  "date": "2026-10-02",
+  "hash": "b6b0961b6553d1cd963ff241f65efece0a7638b0"
  },
  "/soins/implants-dentaires-meknes/": {
-  "date": "2026-10-01",
-  "hash": "bcc73717e8e090529993d509fee78b2e38ede2ea"
+  "date": "2026-10-02",
+  "hash": "6cca8841960e6e11473cd55db641d788e2bb4013"
  },
  "/soins/orthodontie-meknes/": {
   "date": "2026-10-02",
-  "hash": "bf6569702ca0ad49c9c7424206792fc296fb1330"
+  "hash": "7343c4a46218a3d504e9a5acfcbb086a0b85922e"
  },
  "/soins/parodontie-meknes/": {
-  "date": "2026-10-01",
-  "hash": "b526acff9d6137e6df6a1a4449c1102a0ea057aa"
+  "date": "2026-10-02",
+  "hash": "861c6a6a0cb45eeb766abcf73060c77aada7bf31"
  },
  "/soins/pedodontie-meknes/": {
-  "date": "2026-10-01",
-  "hash": "e8c59a87bf7da5bb3a5969a694eedc0c9ee5414c"
+  "date": "2026-10-02",
+  "hash": "b982d372d4f004cf5802b91d0d716d4553762d61"
  },
  "/soins/prothese-dentaire-meknes/": {
   "date": "2026-10-02",
-  "hash": "48dbf13f361b15816a5947212229ffae7fb4c1f1"
+  "hash": "d33eb03a0369ec86c244e6eca0a383e3fc2fba7c"
  }
 }

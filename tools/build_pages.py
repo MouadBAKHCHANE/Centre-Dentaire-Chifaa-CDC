@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261003a'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261003d'          # version de dark.css / dark.js (cache navigateur)
 BOOK = 'https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112'
 MAPS = 'https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA'
 WA = 'https://wa.me/message/MDYCV375HLAJO1'
@@ -503,10 +503,12 @@ def clink(icon, text, href, ext=False):
 
 WA_IC = '<path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"/>'
 
+SHOW_FORM = False   # formulaire de demande de rendez-vous masqué pour l'instant (True pour le réafficher)
+
 def booking(checked=None, title='Planifiez votre visite'):
     tabs = ''.join('<label class="tp-tab"><input type="radio" name="traitement" value="%s"%s><span>%s</span></label>'
                    % (SOIN_NAME[s], ' checked' if s == checked else '', SOIN_NAME[s]) for s in SOINS_ORDER)
-    return '''
+    html = '''
   <section class="tp-book" id="rendez-vous">
     <div class="tp-book-copy">
       <h2 data-lines>%(title)s</h2>
@@ -564,6 +566,11 @@ def booking(checked=None, title='Planifiez votre visite'):
            l2='',
            l3=clink(WA_IC, 'WhatsApp', WA, True),
            l4=clink('pin', 'Av des FAR, Meknès', MAPS, True))
+    if not SHOW_FORM:
+        i = html.index('    <div class="tp-form-card"'); j = html.index('  </section>', i)
+        html = html[:i].rstrip() + '\n' + html[j:]
+        html = html.replace('<section class="tp-book" id="rendez-vous">', '<section class="tp-book tp-book-solo" id="rendez-vous">')
+    return html
 
 def lieu(img='reception-cabinet-cdc-meknes.jpg', alt="Accueil du Centre Dentaire Chifaa à Meknès : comptoir de réception et logo CDC"):
     return '''
@@ -694,7 +701,7 @@ def contact_page():
     ARROW = ('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" '
              'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7l-10 10"/><path d="M8 7h9v9"/></svg>')
     faqs = [
-        ("Comment prendre rendez-vous ?", "Appelez le cabinet au 05 35 51 69 24, écrivez-nous sur WhatsApp, remplissez le formulaire de cette page ou réservez directement en ligne sur Dentisto. Nous vous proposons un créneau aux horaires d'ouverture."),
+        ("Comment prendre rendez-vous ?", "Appelez le cabinet au 05 35 51 69 24, écrivez-nous sur WhatsApp ou réservez directement en ligne sur Dentisto. Nous vous proposons un créneau aux horaires d'ouverture."),
         ("Que faut-il apporter à la première consultation ?", "Votre pièce d'identité, vos radiographies ou comptes rendus récents s'ils existent, la liste de vos traitements en cours et, le cas échéant, les documents de votre mutuelle ou de votre assurance."),
         ("Que faire en cas d'urgence dentaire ?", "Appelez le cabinet pendant les horaires d'ouverture et expliquez la situation : douleur, dent cassée, gonflement. Nous faisons notre possible pour vous recevoir rapidement. En dehors des horaires, laissez-nous un message sur WhatsApp."),
         ("Le cabinet travaille-t-il avec les mutuelles et assurances ?", "Un devis écrit et détaillé vous est remis avant tout traitement. Nous vous fournissons les documents nécessaires pour vos démarches de remboursement auprès de votre mutuelle ou de votre assurance."),
@@ -768,7 +775,7 @@ def contact_page():
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in faqs]},
         crumbs([('Accueil', '/'), ('Contact', path)])]}
     return (path, "Contact | Centre Dentaire Chifaa, dentiste à Meknès",
-            "Centre Dentaire Chifaa, Av des FAR à Meknès : 05 35 51 69 24, WhatsApp ou formulaire. Lun-ven 8h30-17h30, sam 9h00-14h30.",
+            "Centre Dentaire Chifaa, Av des FAR à Meknès : 05 35 51 69 24, WhatsApp ou réservation en ligne. Lun-ven 8h30-17h30, sam 9h00-14h30.",
             'reception-cabinet-cdc-meknes.jpg', ld, body)
 
 def legal_page(path, title, h1, sections, desc):

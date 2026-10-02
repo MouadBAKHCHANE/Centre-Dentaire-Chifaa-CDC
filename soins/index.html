@@ -137,7 +137,7 @@
  ]
 }
 </script>
-<link rel="stylesheet" href="/dark.css?v=20261003a">
+<link rel="stylesheet" href="/dark.css?v=20261003d">
 </head>
 <body>
 
@@ -366,7 +366,7 @@
     </div>
   </section>
 
-  <section class="tp-book" id="rendez-vous">
+  <section class="tp-book tp-book-solo" id="rendez-vous">
     <div class="tp-book-copy">
       <h2 data-lines>Planifiez votre visite</h2>
       <div class="tp-book-links" data-fade>
@@ -376,46 +376,6 @@
         <a class="tp-clink" href="https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA" rel="noopener" target="_blank"><span class="tp-clink-ic" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"/></svg></span><span class="tp-clink-t">Av des FAR, Meknès</span><span class="tp-clink-bg" aria-hidden="true"></span></a>
       </div>
       <p class="tp-book-hours" data-fade>Lundi au vendredi de 8h30 à 17h30, samedi de 9h00 à 14h30.</p>
-    </div>
-
-    <div class="tp-form-card" data-fade>
-      <form class="tp-form" id="tp-form" novalidate>
-        <div class="tp-field"><label class="tp-flabel" for="f-nom">Nom</label><input class="tp-input" id="f-nom" type="text" name="nom" autocomplete="name" required minlength="2"></div>
-        <div class="tp-field"><label class="tp-flabel" for="f-tel">Téléphone</label><input class="tp-input" id="f-tel" type="tel" name="tel" autocomplete="tel" inputmode="tel" required></div>
-        <div class="tp-field"><label class="tp-flabel" for="f-email">E-mail</label><input class="tp-input" id="f-email" type="email" name="email" autocomplete="email"></div>
-        <div class="tp-field"><label class="tp-flabel" for="f-msg">Motif de la visite</label><textarea class="tp-input tp-textarea" id="f-msg" name="motif" rows="3"></textarea></div>
-
-        <fieldset class="tp-fs">
-          <legend class="tp-legend">Type de traitement</legend>
-          <div class="tp-tabs"><label class="tp-tab"><input type="radio" name="traitement" value="Orthodontie"><span>Orthodontie</span></label><label class="tp-tab"><input type="radio" name="traitement" value="Implants dentaires"><span>Implants dentaires</span></label><label class="tp-tab"><input type="radio" name="traitement" value="Chirurgie orale"><span>Chirurgie orale</span></label><label class="tp-tab"><input type="radio" name="traitement" value="Parodontie"><span>Parodontie</span></label><label class="tp-tab"><input type="radio" name="traitement" value="Prothèse dentaire"><span>Prothèse dentaire</span></label><label class="tp-tab"><input type="radio" name="traitement" value="Pédodontie"><span>Pédodontie</span></label></div>
-        </fieldset>
-
-        <fieldset class="tp-fs">
-          <legend class="tp-legend">Quand souhaitez-vous venir ?</legend>
-          <div class="tp-radios">
-            <label class="tp-radio"><input type="radio" name="quand" value="Dès que possible" checked><span class="tp-radio-dot" aria-hidden="true"></span><span>Dès que possible</span></label>
-            <label class="tp-radio"><input type="radio" name="quand" value="Dans la semaine"><span class="tp-radio-dot" aria-hidden="true"></span><span>Dans la semaine</span></label>
-            <label class="tp-radio"><input type="radio" name="quand" value="Dans 2 à 3 semaines"><span class="tp-radio-dot" aria-hidden="true"></span><span>Dans 2 à 3 semaines</span></label>
-            <label class="tp-radio"><input type="radio" name="quand" value="Je me renseigne"><span class="tp-radio-dot" aria-hidden="true"></span><span>Je me renseigne simplement</span></label>
-          </div>
-        </fieldset>
-
-        <details class="tp-dd">
-          <summary class="tp-dd-t"><span>Quelle est votre priorité ?</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6"/></svg></summary>
-          <div class="tp-dd-list">
-            <label class="tp-check-l"><input type="checkbox" name="priorite" value="Soulager une douleur"><span class="tp-check-box" aria-hidden="true"></span><span>Soulager une douleur</span></label>
-            <label class="tp-check-l"><input type="checkbox" name="priorite" value="Un résultat discret"><span class="tp-check-box" aria-hidden="true"></span><span>Un résultat discret</span></label>
-            <label class="tp-check-l"><input type="checkbox" name="priorite" value="Un traitement rapide"><span class="tp-check-box" aria-hidden="true"></span><span>Un traitement rapide</span></label>
-            <label class="tp-check-l"><input type="checkbox" name="priorite" value="Un devis clair"><span class="tp-check-box" aria-hidden="true"></span><span>Un devis clair</span></label>
-          </div>
-        </details>
-
-        <p class="tp-form-err" id="tp-form-err" role="alert" hidden>Indiquez votre nom et un numéro de téléphone valide.</p>
-        <div class="tp-form-row">
-          <button class="tp-submit" type="submit">Envoyer la demande<span class="btn-orb" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7l-10 10"/><path d="M8 7h9v9"/></svg></span></button>
-          <span class="tp-form-note">Réponse via WhatsApp, aux heures d'ouverture.</span>
-        </div>
-      </form>
     </div>
   </section>
 
@@ -506,7 +466,7 @@
 <script src="/vendor/gsap.min.js"></script>
 <script src="/vendor/ScrollTrigger.min.js"></script>
 <script src="/vendor/lenis.min.js"></script>
-<script src="/dark.js?v=20261003a"></script>
+<script src="/dark.js?v=20261003d"></script>
 
 </body>
 </html>
