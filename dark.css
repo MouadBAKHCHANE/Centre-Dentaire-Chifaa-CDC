@@ -2097,3 +2097,29 @@ h2.qs-tag { margin: 0; font-weight: inherit; line-height: inherit; }
   .cf-map.cf-map-pin { min-height: 340px; }
   .cf-map-head { justify-content: center; text-align: center; }
 }
+
+/* « Prenez rendez-vous » (blog), version compacte : disque et dent au centre, photos posées sur les deux orbites
+   (--ring = diamètre du disque ; orbites à 1,35 et 1,75 x --ring, soit des rayons de 0,675 et 0,875 x --ring) */
+.ab-book-fl { --ring: min(440px, 44vw); min-height: clamp(460px, 34vw, 540px); padding: 56px 16px; }
+.ab-book-fl .fl-img {
+  left: calc(50% + var(--x) - var(--s) / 2); top: calc(50% + var(--y) - var(--s) / 2);
+  right: auto; bottom: auto; width: var(--s); height: var(--s);
+}
+.ab-book-fl .fl-1 { --s: calc(var(--ring) * .28); --x: calc(var(--ring) * -.822); --y: calc(var(--ring) * -.299); }
+.ab-book-fl .fl-4 { --s: calc(var(--ring) * .21); --x: calc(var(--ring) * -.675); --y: 0px; }
+.ab-book-fl .fl-3 { --s: calc(var(--ring) * .31); --x: calc(var(--ring) * -.822); --y: calc(var(--ring) * .299); }
+.ab-book-fl .fl-2 { --s: calc(var(--ring) * .24); --x: calc(var(--ring) * .612);  --y: calc(var(--ring) * -.285); }
+.ab-book-fl .fl-5 { --s: calc(var(--ring) * .28); --x: calc(var(--ring) * .875);  --y: 0px; }
+.ab-book-fl .fl-6 { --s: calc(var(--ring) * .24); --x: calc(var(--ring) * .612);  --y: calc(var(--ring) * .285); }
+@media (max-width: 767px) {
+  /* mobile : les photos se placent sur les orbites au-dessus et au-dessous du titre */
+  .ab-book-fl { --ring: 66vw; min-height: calc(66vw * 1.86 + 40px); padding: 40px 12px; }
+  .ab-book-fl .fl-1 { --s: calc(var(--ring) * .34); --x: calc(var(--ring) * -.4375); --y: calc(var(--ring) * -.758); }
+  .ab-book-fl .fl-4 { --s: calc(var(--ring) * .28); --x: 0px;                         --y: calc(var(--ring) * -.675); }
+  .ab-book-fl .fl-2 { --s: calc(var(--ring) * .30); --x: calc(var(--ring) * .4375);  --y: calc(var(--ring) * -.758); }
+  .ab-book-fl .fl-3 { --s: calc(var(--ring) * .34); --x: calc(var(--ring) * -.4375); --y: calc(var(--ring) * .758); }
+  .ab-book-fl .fl-6 { --s: calc(var(--ring) * .28); --x: 0px;                         --y: calc(var(--ring) * .675); }
+  .ab-book-fl .fl-5 { --s: calc(var(--ring) * .30); --x: calc(var(--ring) * .4375);  --y: calc(var(--ring) * .758); }
+}
+.ab-book-fl .ab-ring-disc { opacity: .9; }
+.ab-book-fl .ab-ring-disc::after { opacity: .85; }
