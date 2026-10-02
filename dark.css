@@ -2123,3 +2123,18 @@ h2.qs-tag { margin: 0; font-weight: inherit; line-height: inherit; }
 }
 .ab-book-fl .ab-ring-disc { opacity: .9; }
 .ab-book-fl .ab-ring-disc::after { opacity: .85; }
+
+/* « Planifiez votre visite » : téléphone et WhatsApp côte à côte, bouton de rendez-vous en dessous */
+.tp-book-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.tp-book-cta { margin: 6px 0; }
+@media (max-width: 991px) { .tp-book-solo .tp-book-row { justify-content: center; } }
+
+/* soins : avant / après « dézoomé » sur ordinateur, photo entière ; le vide est rempli par la même photo floutée */
+@media (min-width: 768px) {
+  .st-slide .ba { isolation: isolate; }
+  .st-slide .ba::before {
+    content: ""; position: absolute; inset: -40px; z-index: -1;
+    background: var(--ba-bg) center / cover no-repeat; filter: blur(22px) brightness(.55) saturate(1.1);
+  }
+  .st-slide .ba-img { object-fit: contain; }
+}

@@ -371,7 +371,7 @@ def soins_hub(B):
             <a class="btn btn-light btn-big" href="/soins/%(s)s-meknes/"%(tab)s>%(name)s%(orb)s</a>
           </div>
         </div>
-        <div class="ba" data-ba style="--p:50%%">
+        <div class="ba" data-ba style="--p:50%%; --ba-bg:url(/assets/img/ba-%(pair)s-apres.jpg)">
           <img class="ba-img ba-after" src="/assets/img/ba-%(pair)s-apres.jpg" alt="Après : %(aa)s" loading="lazy">
           <img class="ba-img ba-before" src="/assets/img/ba-%(pair)s-avant.jpg" alt="Avant : %(ab)s" loading="lazy">
           <span class="ba-tag ba-tag-l mono" aria-hidden="true">AVANT</span>

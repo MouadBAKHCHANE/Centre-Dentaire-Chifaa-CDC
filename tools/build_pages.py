@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261003j'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261003l'          # version de dark.css / dark.js (cache navigateur)
 BOOK = 'https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112'
 MAPS = 'https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA'
 WA = 'https://wa.me/message/MDYCV375HLAJO1'
@@ -524,9 +524,8 @@ def booking(checked=None, title='Planifiez votre visite'):
     <div class="tp-book-copy">
       <h2 data-lines>%(title)s</h2>
       <div class="tp-book-links" data-fade>
-        %(l1)s
-        %(l2)s
-        %(l3)s
+        <div class="tp-book-row">%(l1)s%(l3)s</div>
+        <a class="btn btn-navy btn-big tp-book-cta" href="%(book)s" target="_blank" rel="noopener">Prendre rendez-vous%(orb)s</a>%(l2)s
         %(l4)s
       </div>
       <p class="tp-book-hours" data-fade>Lundi au vendredi de 8h30 à 17h30, samedi de 9h00 à 14h30.</p>
@@ -572,7 +571,7 @@ def booking(checked=None, title='Planifiez votre visite'):
       </form>
     </div>
   </section>
-''' % dict(title=title, tabs=tabs, orb=ORB,
+''' % dict(title=title, tabs=tabs, orb=ORB, book=BOOK,
            l1=clink('phone', '05 35 51 69 24', 'tel:+212535516924'),
            l2='',
            l3=clink(WA_IC, 'WhatsApp', WA, True),
@@ -704,6 +703,21 @@ def cabinet_page():
             "Le Centre Dentaire Chifaa du Dr Taoufik Boukadous, avenue des FAR à Meknès : six spécialités, radiologie 3D sur place et empreinte numérique.",
             'reception-cabinet-cdc-meknes.jpg', ld, body)
 
+SHOW_CF_LOC = False   # contact : photo du bureau + carte « Meknès, Maroc » masquée pour l'instant
+CF_LOC = '''
+  <section class="cf-loc" aria-label="Adresse et coordonnées">
+    <img class="cf-loc-bg" src="/assets/img/accueil-cabinet-cdc-meknes.jpg" alt="Bureau du Centre Dentaire Chifaa à Meknès et mur au logo CDC" loading="lazy" data-lieu-parallax>
+    <div class="cf-loc-list">
+      <a class="lieu-card" href="%(maps)s" target="_blank" rel="noopener" data-fade>
+        <span class="lieu-title"><span class="lieu-h">Meknès, Maroc</span><span class="lieu-arrow" aria-hidden="true">%(arrow)s</span></span>
+        <span class="lieu-space" aria-hidden="true"></span>
+        <span class="lieu-address"><span>Bureau N1, Imm Bureaux El Menzah N5</span><span>Av des FAR, Meknès 50000</span></span>
+        <span class="lieu-hours"><span>Lun – Ven : 8h30 – 17h30</span><span>Sam : 9h00 – 14h30</span></span>
+      </a>
+    </div>
+  </section>
+'''
+
 def contact_page():
     """Page contact : même composition que la page contact de la référence (Caliora)."""
     path = '/contact/'
@@ -768,21 +782,11 @@ def contact_page():
     <a class="btn btn-light cf-gal-btn" href="/le-cabinet/">Voir le cabinet%(orb)s</a>
     <div class="cf-gal-grid">%(gal)s</div>
   </section>
-
-  <section class="cf-loc" aria-label="Adresse et coordonnées">
-    <img class="cf-loc-bg" src="/assets/img/accueil-cabinet-cdc-meknes.jpg" alt="Bureau du Centre Dentaire Chifaa à Meknès et mur au logo CDC" loading="lazy" data-lieu-parallax>
-    <div class="cf-loc-list">
-      <a class="lieu-card" href="%(maps)s" target="_blank" rel="noopener" data-fade>
-        <span class="lieu-title"><span class="lieu-h">Meknès, Maroc</span><span class="lieu-arrow" aria-hidden="true">%(arrow)s</span></span>
-        <span class="lieu-space" aria-hidden="true"></span>
-        <span class="lieu-address"><span>Bureau N1, Imm Bureaux El Menzah N5</span><span>Av des FAR, Meknès 50000</span></span>
-        <span class="lieu-hours"><span>Lun – Ven : 8h30 – 17h30</span><span>Sam : 9h00 – 14h30</span></span>
-      </a>
-    </div>
-  </section>
+%(loc)s
 
 </main>
-''' % dict(maps=MAPS, arrow=ARROW, faq=faq_html, gal=gal_html, orb=ORB)
+''' % dict(maps=MAPS, arrow=ARROW, faq=faq_html, gal=gal_html, orb=ORB,
+           loc=(CF_LOC % dict(maps=MAPS, arrow=ARROW)) if SHOW_CF_LOC else '')
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "ContactPage", "url": SITE + path, "name": "Contact – Centre Dentaire Chifaa", "about": DENTIST},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in faqs]},
