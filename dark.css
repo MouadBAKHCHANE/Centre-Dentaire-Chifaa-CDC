@@ -2059,3 +2059,41 @@ h2.qs-tag { margin: 0; font-weight: inherit; line-height: inherit; }
   .st-bar { width: calc(100% - 24px - var(--rw)); }
 }
 @media (min-width: 768px) { .st-vcard .st-vbody { max-width: 470px; } }
+
+/* contact : « Planifiez votre visite » et « Trouver le cabinet » côte à côte */
+.cf-duo { display: grid; gap: clamp(8px, 1vw, 14px); margin: clamp(8px, 1vw, 14px); }
+.cf-duo > section { margin: 0; }
+@media (min-width: 992px) {
+  .cf-duo { grid-template-columns: 1fr 1fr; }
+  .cf-duo .tp-book.tp-book-solo { align-items: center; }
+  .cf-duo .tp-book-solo .tp-book-copy {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 16px; max-width: 520px; margin: 0 auto; padding: 0;
+  }
+  .cf-duo .tp-book-solo .tp-book-links { flex-direction: column; align-items: flex-start; }
+}
+
+/* plan : plus lisible, titre et itinéraire en haut, repère clignotant sur l'adresse exacte (centre de l'image) */
+.cf-map.cf-map-pin { display: block; min-height: 400px; padding: clamp(22px, 2.6vw, 36px); }
+.cf-map-pin .cf-map-bg { opacity: .62; }
+.cf-map-pin .cf-map-fade { background: linear-gradient(180deg, rgba(216,208,202,.92) 0%, rgba(216,208,202,.5) 22%, rgba(216,208,202,0) 42%); }
+.cf-map-head { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.cf-map-pin .cf-map-link { font-size: 22px; }
+.cf-pin { position: absolute; left: 50%; top: 50%; z-index: 2; width: 0; height: 0; }
+.cf-pin-ic { position: absolute; left: -17px; top: -43px; filter: drop-shadow(0 6px 10px rgba(14, 62, 104, .35)); transition: transform .3s cubic-bezier(.22,1,.36,1); }
+.cf-pin:hover .cf-pin-ic { transform: translateY(-4px); }
+.cf-pin-pulse {
+  position: absolute; left: -22px; top: -22px; width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(14, 62, 104, .45); animation: cfPinPulse 2s ease-out infinite;
+}
+.cf-pin-pulse + .cf-pin-pulse { animation-delay: 1s; }
+@keyframes cfPinPulse { from { transform: scale(.3); opacity: .9; } to { transform: scale(2.4); opacity: 0; } }
+.cf-pin-label {
+  position: absolute; left: 0; top: 10px; transform: translateX(-50%); white-space: nowrap;
+  padding: 6px 10px; border-radius: 8px; background: #0E3E68; color: #F4F2F0; font-size: 12.5px; letter-spacing: .02em;
+  box-shadow: 0 6px 18px rgba(14, 62, 104, .25);
+}
+@media (prefers-reduced-motion: reduce) { .cf-pin-pulse { animation: none; opacity: .35; } }
+@media (max-width: 767px) {
+  .cf-map.cf-map-pin { min-height: 340px; }
+  .cf-map-head { justify-content: center; text-align: center; }
+}

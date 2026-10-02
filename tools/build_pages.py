@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261003g'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261003h'          # version de dark.css / dark.js (cache navigateur)
 BOOK = 'https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112'
 MAPS = 'https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA'
 WA = 'https://wa.me/message/MDYCV375HLAJO1'
@@ -740,20 +740,33 @@ def contact_page():
     <span class="cf-hero-tint" aria-hidden="true"></span>
     <h1 class="cf-hero-title">Contact<span class="sr-only"> du Centre Dentaire Chifaa, dentiste à Meknès</span></h1>
   </section>
+  <div class="cf-duo">
 ''' + booking(title='Planifiez votre visite') + '''
-  <section class="cf-map" aria-label="Trouver le cabinet">
-    <img class="cf-map-bg" src="/assets/img/plan-quartier-cabinet-meknes.jpg" alt="" loading="lazy">
+  <section class="cf-map cf-map-pin" aria-label="Trouver le cabinet">
+    <img class="cf-map-bg" src="/assets/img/plan-quartier-cabinet-meknes.jpg" alt="Plan du quartier de l'avenue des FAR à Meknès, avec l'emplacement du cabinet" loading="lazy">
     <span class="cf-map-fade" aria-hidden="true"></span>
-    <div class="cf-map-row">
-      <h2 class="cf-map-h" data-cf-left>Trouver le cabinet</h2>
-      <div class="cf-map-pics" data-cf-pics aria-hidden="true">
-        <img src="/assets/img/cabinet-salle-de-soins-meknes.jpg" alt="" loading="lazy">
-        <img src="/assets/img/reception-cabinet-cdc-meknes.jpg" alt="" loading="lazy">
-        <img src="/assets/img/cabinet-radiologie-3d-meknes.jpg" alt="" loading="lazy">
-      </div>
-      <a class="cf-map-link" href="%(maps)s" target="_blank" rel="noopener" data-cf-right><span>Itinéraire</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6l-6 6"/></svg><i aria-hidden="true"></i></a>
+    <div class="cf-map-head">
+      <h2 class="cf-map-h">Trouver le cabinet</h2>
+      <a class="cf-map-link" href="%(maps)s" target="_blank" rel="noopener"><span>Itinéraire</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6l-6 6"/></svg><i aria-hidden="true"></i></a>
     </div>
+    <a class="cf-pin" href="%(maps)s" target="_blank" rel="noopener" aria-label="Centre Dentaire Chifaa, Av des FAR : ouvrir dans Google Maps">
+      <span class="cf-pin-pulse" aria-hidden="true"></span><span class="cf-pin-pulse" aria-hidden="true"></span>
+      <svg class="cf-pin-ic" width="34" height="44" viewBox="0 0 34 44" aria-hidden="true"><path d="M17 43s15-14.6 15-26A15 15 0 0 0 2 17c0 11.4 15 26 15 26z" fill="#0E3E68" stroke="#F4F2F0" stroke-width="2"/><circle cx="17" cy="17" r="5.5" fill="#F4F2F0"/></svg>
+      <span class="cf-pin-label">Centre Dentaire Chifaa</span>
+    </a>
     <small class="cf-map-credit">© contributeurs OpenStreetMap</small>
+  </section>
+  </div>
+
+  <section class="cf-faq" aria-labelledby="cf-faq-h">
+    <h2 id="cf-faq-h" data-lines>Questions fréquentes</h2>
+    <div class="cf-faq-list">%(faq)s</div>
+  </section>
+
+  <section class="cf-gal" aria-labelledby="cf-gal-h">
+    <h2 id="cf-gal-h" data-lines>Pensé pour votre confort et la précision</h2>
+    <a class="btn btn-light cf-gal-btn" href="/le-cabinet/">Voir le cabinet%(orb)s</a>
+    <div class="cf-gal-grid">%(gal)s</div>
   </section>
 
   <section class="cf-loc" aria-label="Adresse et coordonnées">
@@ -766,17 +779,6 @@ def contact_page():
         <span class="lieu-hours"><span>Lun – Ven : 8h30 – 17h30</span><span>Sam : 9h00 – 14h30</span></span>
       </a>
     </div>
-  </section>
-
-  <section class="cf-faq" aria-labelledby="cf-faq-h">
-    <h2 id="cf-faq-h" data-lines>Questions fréquentes</h2>
-    <div class="cf-faq-list">%(faq)s</div>
-  </section>
-
-  <section class="cf-gal" aria-labelledby="cf-gal-h">
-    <h2 id="cf-gal-h" data-lines>Pensé pour votre confort et la précision</h2>
-    <a class="btn btn-light cf-gal-btn" href="/le-cabinet/">Voir le cabinet%(orb)s</a>
-    <div class="cf-gal-grid">%(gal)s</div>
   </section>
 
 </main>
