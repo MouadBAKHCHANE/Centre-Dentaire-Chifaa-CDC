@@ -2047,3 +2047,15 @@ h2.qs-tag { margin: 0; font-weight: inherit; line-height: inherit; }
 @media (max-width: 767px) {
   .tp-cta-contact .tp-book-links { flex-direction: column; align-items: center; }
 }
+
+/* soins : avant / après un peu plus haut, photo plus carrée (4:3) ; la carte de gauche prend le reste */
+@media (min-width: 768px) {
+  .st-slider {
+    --sh: clamp(480px, 34vw, 620px);
+    --rw: min(calc((var(--sh) - 16px) * 4 / 3), calc(100vw - 400px));
+    height: var(--sh);
+  }
+  .st-slide { grid-template-columns: 1fr var(--rw); }
+  .st-bar { width: calc(100% - 24px - var(--rw)); }
+}
+@media (min-width: 768px) { .st-vcard .st-vbody { max-width: 470px; } }
