@@ -18,7 +18,10 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261004h'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261004s'          # version de dark.css / dark.js (cache navigateur)
+EMAIL = 'centredentairechifaa@gmail.com'
+ICE = '003546775000034'
+ORDRE = '7326'
 BOOK = 'https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112'
 MAPS = 'https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA'
 WA = 'https://wa.me/message/MDYCV375HLAJO1'
@@ -44,6 +47,7 @@ ICONS = {
     'pin': '<path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/><path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"/>',
     'phone': '<path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/>',
     'scan': '<path d="M4 8v-2a2 2 0 0 1 2 -2h2"/><path d="M4 16v2a2 2 0 0 0 2 2h2"/><path d="M16 4h2a2 2 0 0 1 2 2v2"/><path d="M16 20h2a2 2 0 0 0 2 -2v-2"/><path d="M7 12h10"/>',
+    'mail': '<path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/>',
     'heart': '<path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/>',
     'sparkle': '<path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6z"/>',
 }
@@ -409,7 +413,7 @@ SCRIPTS = '''
 </html>
 ''' % VER
 
-DENTIST = {"@type": "Dentist", "@id": SITE + "/#cabinet", "name": "Centre Dentaire Chifaa", "telephone": "+212535516924",
+DENTIST = {"@type": "Dentist", "@id": SITE + "/#cabinet", "name": "Centre Dentaire Chifaa", "telephone": "+212535516924", "email": EMAIL,
            "address": {"@type": "PostalAddress", "streetAddress": "Bureau N1, Imm Bureaux El Menzah N5, Av des FAR",
                        "addressLocality": "Meknès", "postalCode": "50000", "addressCountry": "MA"},
            "geo": {"@type": "GeoCoordinates", "latitude": 33.8947626, "longitude": -5.5497537},
@@ -440,6 +444,7 @@ def hero(img, w, h, pills, h1, stats):
                  '<span class="tp-pill is-cur" aria-current="page">%s</span>' % n for n, p in pills)
     return '''
   <section class="tp-hero">
+    <img class="tp-hero-fill" src="/assets/img/%s" alt="" aria-hidden="true">
     <img class="tp-hero-bg" src="/assets/img/%s" alt="" width="%d" height="%d" fetchpriority="high">
     <div class="tp-hero-copy">
       <nav class="tp-pills" aria-label="Fil d'Ariane">%s</nav>
@@ -449,7 +454,7 @@ def hero(img, w, h, pills, h1, stats):
       %s
     </div>
   </section>
-''' % (img, w, h, pl, h1, '\n      '.join(stats))
+''' % (img, img, w, h, pl, h1, '\n      '.join(stats))
 
 def gallery(items, group):
     figs = ''.join('    <figure data-fade><a class="tp-lb-link" href="/assets/img/%s" data-lightbox="%s" aria-label="Agrandir la photo" '
@@ -514,6 +519,7 @@ def booking(checked=None, title='Planifiez votre visite'):
       <h2 data-lines>%(title)s</h2>
       <div class="tp-book-links" data-fade>
         <div class="tp-book-row">%(l1)s%(l3)s</div>
+        %(l5)s
         <a class="btn btn-navy btn-big tp-book-cta" href="%(book)s" target="_blank" rel="noopener">Prendre rendez-vous%(orb)s</a>%(l2)s
       </div>
       <p class="tp-book-hours" data-fade><span>Lundi au vendredi de 8h30 à 17h30,</span> <span>samedi de 9h00 à 14h30.</span></p>
@@ -559,7 +565,7 @@ def booking(checked=None, title='Planifiez votre visite'):
       </form>
     </div>
   </section>
-''' % dict(title=title, tabs=tabs, orb=ORB, book=BOOK,
+''' % dict(title=title, tabs=tabs, orb=ORB, book=BOOK, l5=clink('mail', EMAIL, 'mailto:' + EMAIL),
            l1=clink('phone', '05 35 51 69 24', 'tel:+212535516924'),
            l2='',
            l3=clink(WA_IC, 'WhatsApp', WA, True),
@@ -814,10 +820,10 @@ def mentions_page():
      ("Éditeur du site", "<p>Le site www.centredentairechifaa.ma est édité par le Centre Dentaire Chifaa, cabinet de chirurgie dentaire du Dr Taoufik Boukadous.</p>"
       "<ul><li><b>Adresse</b> : Bureau N1, Imm Bureaux El Menzah N5, Av des FAR, Meknès 50000, Maroc</li>"
       "<li><b>Téléphone</b> : 05 35 51 69 24</li>"
-      "<li><b>E-mail</b> : %(t)s</li>"
-      "<li><b>Identifiant commun de l'entreprise (ICE)</b> : %(t)s</li>"
-      "<li><b>Inscription au Conseil national de l'Ordre des médecins dentistes</b> : %(t)s</li></ul>"
-      "<p><b>Directeur de la publication</b> : Dr Taoufik Boukadous.</p>" % dict(t=TODO)),
+      "<li><b>E-mail</b> : <a href=\"mailto:%(mail)s\">%(mail)s</a></li>"
+      "<li><b>Identifiant commun de l'entreprise (ICE)</b> : %(ice)s</li>"
+      "<li><b>Numéro d'inscription au Conseil national de l'Ordre des médecins dentistes</b> : %(ordre)s</li></ul>"
+      "<p><b>Directeur de la publication</b> : Dr Taoufik Boukadous.</p>" % dict(mail=EMAIL, ice=ICE, ordre=ORDRE)),
      ("Conception et réalisation", "<p>Site conçu et développé par MouaDev.</p>"),
      ("Hébergement", "<p>Le site est hébergé par Vercel Inc., États-Unis, <a href=\"https://vercel.com\" target=\"_blank\" rel=\"noopener\">vercel.com</a>.</p>"),
      ("Nature des informations", "<p>Les contenus de ce site sont fournis à titre d'information générale sur les soins proposés par le cabinet. Ils ne remplacent pas une consultation : seul un examen clinique permet d'établir un diagnostic et un plan de traitement adaptés. Aucun tarif n'est affiché ; un devis écrit est remis après la consultation.</p>"),
@@ -839,8 +845,8 @@ def privacy_page():
       "<li><b>Hébergement</b> : Vercel Inc. conserve des journaux techniques de connexion nécessaires au fonctionnement et à la sécurité du site.</li></ul>"),
      ("Cookies", "<p>Le site n'utilise pas de cookies publicitaires ni d'outil de mesure d'audience. Les services tiers intégrés, comme la carte Google Maps, peuvent déposer leurs propres cookies.</p>"),
      ("Durée de conservation", "<p>Les échanges liés à une demande de rendez-vous sont conservés le temps nécessaire à la prise en charge. Les données médicales de votre dossier patient sont conservées au cabinet selon les obligations légales applicables aux professionnels de santé.</p>"),
-     ("Vos droits", "<p>Vous disposez d'un droit d'accès, de rectification et d'opposition au traitement de vos données. Pour l'exercer, contactez le cabinet au 05 35 51 69 24 ou par écrit à l'adresse ci-dessus. Vous pouvez également saisir la Commission nationale de contrôle de la protection des données à caractère personnel (CNDP), <a href=\"https://www.cndp.ma\" target=\"_blank\" rel=\"noopener\">www.cndp.ma</a>.</p>"
-      "<p><b>Déclaration ou autorisation CNDP du cabinet</b> : %s</p>" % TODO),
+     ("Vos droits", "<p>Vous disposez d'un droit d'accès, de rectification et d'opposition au traitement de vos données. Pour l'exercer, contactez le cabinet au 05 35 51 69 24 ou par e-mail à <a href=\"mailto:centredentairechifaa@gmail.com\">centredentairechifaa@gmail.com</a>. Vous pouvez également saisir la Commission nationale de contrôle de la protection des données à caractère personnel (CNDP), <a href=\"https://www.cndp.ma\" target=\"_blank\" rel=\"noopener\">www.cndp.ma</a>.</p>"
+),
     ]
     return legal_page('/politique-de-confidentialite/', "Politique de confidentialité | Centre Dentaire Chifaa, Meknès", "Politique de confidentialité", s,
                       "Politique de confidentialité du site du Centre Dentaire Chifaa à Meknès : données collectées, services tiers, cookies et droits selon la loi 09-08.")

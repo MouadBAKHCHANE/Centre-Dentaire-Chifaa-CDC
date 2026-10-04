@@ -492,7 +492,7 @@ AB_TECH = ["Fauteuil et unit", "Scanner intra-oral", "Autoclave", "Radio 3D", "L
 TODO_T = '<span class="legal-todo">[à compléter]</span>'
 AB_TEAM = [
     ("Dr Taoufik Boukadous", "CHIRURGIEN-DENTISTE",
-     "Responsable du Centre Dentaire Chifaa. " + TODO_T + " : parcours, formations et domaines de prédilection, en deux phrases.",
+     "Docteur en médecine dentaire, diplômé de la Faculté de Médecine Internationale de Rabat (UIR), et titulaire d'un Diplôme Universitaire d'Implantologie et de Chirurgie Orale.",
      "Portrait du Dr Boukadous", "Tenue de travail, au cabinet, regard caméra, épaules détendues. Même cadrage et même fond pour toute l'équipe."),
     ("[Prénom Nom]", "[FONCTION]", TODO_T + " : rôle au cabinet et ce que ce membre apporte aux patients, en deux phrases.",
      "Portrait d'un membre de l'équipe", "Même fond, même lumière et même cadrage que le portrait du Dr, pour une grille homogène."),
@@ -616,6 +616,20 @@ def cabinet_about(B):
     <div class="ab-team-grid">%(team)s
     </div>
   </section>
+
+  <section class="ab-bio" aria-labelledby="ab-bio-h">
+    <div class="ab-bio-l">
+      <p class="ab-pills mono"><span>DR TAOUFIK</span><span>BOUKADOUS</span></p>
+      <h2 id="ab-bio-h">Mon parcours</h2>
+    </div>
+    <div class="ab-bio-r">
+      <p data-fade>Mon parcours en médecine dentaire a débuté à la Faculté de Médecine Internationale de Rabat (UIR), où j'ai suivi un cursus de six années au terme desquelles j'ai obtenu mon Diplôme de Docteur en Médecine Dentaire.</p>
+      <p data-fade>Souhaitant approfondir mes compétences dans les domaines de la chirurgie et de l'implantologie, j'ai ensuite poursuivi une formation de deux années en Diplôme Universitaire d'Implantologie et de Chirurgie Orale.</p>
+      <p data-fade>En parallèle de mon cursus universitaire, j'ai toujours accordé une grande importance à la formation continue afin de développer une approche globale et moderne de la dentisterie. J'ai ainsi participé à plusieurs formations spécialisées, notamment en esthétique du sourire, endodontie, restaurations en composite, marketing dentaire, photographie dentaire, implantologie et chirurgie implantaire guidée.</p>
+      <p data-fade>Avant d'ouvrir mon propre cabinet, j'ai eu l'opportunité d'exercer au sein de plusieurs structures dentaires, ce qui m'a permis d'enrichir mon expérience clinique et de prendre en charge des situations variées. J'ai notamment travaillé au sein de Dr Liss Smile Studio à Agadir, Art Clinic à Casablanca, ainsi qu'à la Clinique des Nations Unies et à la Clinique Nour à Rabat.</p>
+      <p data-fade>Aujourd'hui, mon parcours est guidé par une volonté constante : associer précision, formation continue et technologies modernes afin d'offrir à chaque patient une prise en charge personnalisée, fondée sur la qualité et l'excellence clinique.</p>
+    </div>
+  </section>
 ''' % dict(hero_imgs=hero_imgs, thumbs=thumbs, stats='\n    '.join(stats), cards=cards, specs=specs, maps=B.MAPS, tooth=TOOTH, values=values,
            ring=ring, arrow=ARROW_UR, feats=feats, orb=B.ORB, tech_thumbs=tech_thumbs, team=team_html,
            ph_bento=ph('ab-bento-img', 8, "L'entrée du cabinet", 'PAYSAGE 4:3',
@@ -631,7 +645,15 @@ def cabinet_about(B):
                "Façade de l'immeuble El Menzah prise de jour depuis le trottoir d'en face, entrée bien visible.", 'dark', attrs=' data-lieu-parallax')) \
         + '\n</main>\n'
     ld = {"@context": "https://schema.org", "@graph": [
-        {"@type": "AboutPage", "url": B.SITE + path, "name": "Le cabinet – Centre Dentaire Chifaa", "about": B.DENTIST},
+        {"@type": "AboutPage", "url": B.SITE + path, "name": "Le cabinet – Centre Dentaire Chifaa", "about": B.DENTIST,
+         "mentions": {"@id": B.SITE + "/#dr-boukadous"}},
+        {"@type": "Person", "@id": B.SITE + "/#dr-boukadous", "name": "Dr Taoufik Boukadous", "honorificPrefix": "Dr",
+         "jobTitle": "Chirurgien-dentiste", "worksFor": {"@id": B.SITE + "/#cabinet"}, "url": B.SITE + path + "#ab-bio-h",
+         "alumniOf": {"@type": "CollegeOrUniversity", "name": "Université Internationale de Rabat (UIR)"},
+         "hasCredential": [
+             {"@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "Diplôme de Docteur en Médecine Dentaire"},
+             {"@type": "EducationalOccupationalCredential", "credentialCategory": "certificate", "name": "Diplôme Universitaire d'Implantologie et de Chirurgie Orale"}],
+         "knowsAbout": ["Implantologie", "Chirurgie orale", "Chirurgie implantaire guidée", "Esthétique du sourire", "Endodontie", "Restaurations en composite"]},
         B.crumbs([('Accueil', '/'), ('Le cabinet', path)])]}
     return (path, "Le cabinet | Centre Dentaire Chifaa, dentiste à Meknès",
             "Le Centre Dentaire Chifaa du Dr Taoufik Boukadous, avenue des FAR à Meknès : six spécialités, radiologie 3D sur place et empreinte numérique.",

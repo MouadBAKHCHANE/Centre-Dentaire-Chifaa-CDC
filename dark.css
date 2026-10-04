@@ -2178,3 +2178,74 @@ h2.qs-tag { margin: 0; font-weight: inherit; line-height: inherit; }
   .ba-knob { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
 }
 @media (max-width: 767px) and (max-height: 700px) { .st-slider { height: 540px; } .st-slide { grid-template-rows: 176px 1fr; } .st-count { top: 208px; } }
+
+/* le cabinet : « Mon parcours » du Dr Boukadous */
+.ab-bio {
+  display: grid; gap: clamp(20px, 3vw, 48px); background: #D8D0CA; color: #151210;
+  padding: clamp(40px, 5vw, 80px) clamp(16px, 4vw, 58px);
+}
+@media (min-width: 900px) { .ab-bio { grid-template-columns: minmax(240px, 1fr) 2fr; align-items: start; } .ab-bio-l { position: sticky; top: 108px; } }
+.ab-bio h2 { margin: 14px 0 0; font: 500 clamp(28px, 3vw, 44px)/1.05 var(--font); letter-spacing: -.03em; }
+.ab-bio-r { max-width: 68ch; }
+.ab-bio-r p { margin: 0 0 18px; font-size: clamp(16px, 1.25vw, 18px); line-height: 1.65; color: rgba(21, 18, 16, .82); }
+.ab-bio-r p:last-child { margin-bottom: 0; color: #151210; font-weight: 500; }
+
+/* pages soins : héros plus haut, voile bleu allégé, photo moins zoomée (même photo floutée derrière pour combler) */
+.tp-hero { min-height: min(86vh, 760px); }
+.tp-hero::before {
+  background: linear-gradient(0deg, var(--navy) 6%, rgba(10,29,48,.55) 22%, rgba(10,29,48,.12) 50%, rgba(10,29,48,.05) 100%),
+              rgba(14, 62, 104, .1);
+}
+.tp-hero h1 { text-shadow: 0 2px 28px rgba(0,0,0,.45); }
+@media (max-width: 699px) {
+  .tp-hero { min-height: 540px; }
+  .tp-hero-bg { height: 76%; }   /* la photo occupe le haut, moins recadrée ; le bas reste au bleu des chiffres */
+}
+@media (max-width: 699px) {
+  .tp-hero-bg { -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%); mask-image: linear-gradient(180deg, #000 70%, transparent 100%); }
+}
+
+/* pages soins : étiquettes et titre du héros un peu plus bas */
+.tp-hero { padding-top: clamp(150px, 15vw, 190px); }
+@media (max-width: 699px) { .tp-hero { padding-top: 124px; } }
+
+/* pages soins : titre encore plus bas ; photo entière (dézoomée), le reste comblé par la même photo floutée */
+.tp-hero { padding-top: clamp(200px, 17vw, 250px); }
+.tp-hero-fill { position: absolute; left: -40px; top: -40px; z-index: -3; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; filter: blur(28px) brightness(.55); }
+@media (min-width: 700px) { .tp-hero-bg { object-fit: contain; } }
+@media (max-width: 699px) {
+  .tp-hero { padding-top: 156px; }
+  .tp-hero-bg { height: 66%; }
+}
+@media (min-width: 700px) {
+  .tp-hero-bg {
+    inset: auto; left: 50%; top: 0; width: auto; height: 100%; max-width: none; transform: translateX(-50%); object-fit: cover;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+  }
+}
+
+/* carte « Meknès, Maroc » : chaque ligne d'adresse tient sur une seule ligne, même sur petit écran */
+.lieu-address > span { white-space: nowrap; }
+@media (max-width: 767px) { .lieu-address { font-size: clamp(13px, 3.9vw, 16px); } }
+
+/* « Planifiez votre visite », mobile : téléphone et WhatsApp toujours côte à côte (petits Android compris) */
+@media (max-width: 767px) {
+  .tp-book-row { flex-wrap: nowrap; gap: 6px; }
+  .tp-book-row .tp-clink { padding: 11px 13px; gap: 7px; font-size: clamp(14px, 4.1vw, 18px); white-space: nowrap; }
+  .tp-book-row .tp-clink-ic { width: 16px; height: 16px; }
+}
+
+/* pages soins : étiquettes + titre posés juste au-dessus des 3 chiffres ; voile bleu seulement sous le texte */
+.tp-hero { justify-content: flex-end; padding-top: 120px; }
+.tp-hero .tp-stats { margin-top: clamp(24px, 2.6vw, 40px); }
+.tp-hero .tp-pills { margin-bottom: 18px; }
+.tp-hero h1 { margin-bottom: 0; }
+.tp-hero::before {
+  background: linear-gradient(0deg, var(--navy) 0%, rgba(10,29,48,.92) 26%, rgba(10,29,48,.6) 44%, rgba(10,29,48,0) 64%);
+}
+@media (max-width: 699px) {
+  .tp-hero { padding-top: 110px; }
+  .tp-hero .tp-stats { margin-top: 22px; }
+  .tp-hero::before { background: linear-gradient(0deg, var(--navy) 0%, rgba(10,29,48,.94) 34%, rgba(10,29,48,.55) 56%, rgba(10,29,48,0) 74%); }
+}
