@@ -71,6 +71,28 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "centre-dentaire-chifaa-cdc.vercel.app"
+        }
+      ],
+      "destination": "https://www.centredentairechifaa.ma/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*/",
+      "has": [
+        {
+          "type": "host",
+          "value": "centre-dentaire-chifaa-cdc.vercel.app"
+        }
+      ],
+      "destination": "https://www.centredentairechifaa.ma/:path*/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
