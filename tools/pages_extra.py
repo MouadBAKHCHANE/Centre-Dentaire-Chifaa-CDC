@@ -91,7 +91,7 @@ def blog_index(B):
 <main id="top">
 
   <section class="cf-hero">
-    <div class="ph ph-dark cf-hero-bg"><span class="ph-body"><span class="ph-label mono"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"/><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></svg>PHOTO À PRENDRE · PAYSAGE 21:9</span><span class="ph-title">Les gestes d'hygiène du quotidien</span><span class="ph-reco">Brosse à dents, fil dentaire et dentifrice posés près d'une fenêtre, lumière naturelle douce, fond clair. Laisser le centre et le bas de l'image calmes : le grand titre « BLOG » s'y superpose.</span></span></div>
+    <img class="cf-hero-bg" src="/assets/img/cabinet-couloir-meknes.jpg" alt="Couloir du Centre Dentaire Chifaa et mur à la citation sur le sourire" fetchpriority="high">
     <span class="cf-hero-tint" aria-hidden="true"></span>
     <h1 class="cf-hero-title"><span class="sr-only">Le </span>Blog<span class="sr-only"> dentaire du Centre Dentaire Chifaa, dentiste à Meknès</span></h1>
   </section>
@@ -388,7 +388,7 @@ def soins_hub(B):
 <main id="top">
 
   <section class="st-hero">
-    <div class="ph ph-dark st-hero-bg"><span class="ph-body"><span class="ph-label mono"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"/><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></svg>PHOTO À PRENDRE · PAYSAGE 16:9</span><span class="ph-title">Un soin en cours au cabinet</span><span class="ph-reco">Le praticien au travail : mains gantées, instruments et scialytique allumé, patient vu de dos ou sans visage, ou avec son accord écrit. Garder le bas de l'image calme : le titre et les boutons s'y superposent.</span></span></div>
+    <img class="st-hero-bg" src="/assets/img/cabinet-salle-de-soins-meknes.jpg" alt="Salle de soins du Centre Dentaire Chifaa à Meknès" fetchpriority="high">
     <div class="st-hero-l" data-st-up>
       <h1>Soins dentaires à Meknès</h1>
       <p>Six spécialités réunies au Centre Dentaire Chifaa, pour des résultats durables et votre confort.</p>
@@ -441,8 +441,37 @@ CAM = ('<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="curr
        '<path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></svg>')
 
 
+# consignes photo remplacées par les photos réelles du cabinet (mettre SHOW_BRIEFS = True pour revoir les consignes)
+SHOW_BRIEFS = False
+PH_PHOTOS = {
+    1: ('accueil-cabinet-cdc-meknes.jpg', "Bureau du praticien et mur au logo du Centre Dentaire Chifaa"),
+    2: ('cabinet-salle-de-soins-meknes.jpg', "Salle de soins et unit dentaire du cabinet"),
+    3: ('reception-cabinet-cdc-meknes.jpg', "Accueil et comptoir de réception du cabinet"),
+    4: ('cabinet-radiologie-3d-meknes.jpg', "Appareil de radiologie panoramique et 3D du cabinet"),
+    5: ('cabinet-scan-3d-empreinte.jpg', "Écran affichant une empreinte dentaire en 3D"),
+    6: ('cabinet-salle-de-soins-meknes.jpg', "Salle de soins du Centre Dentaire Chifaa"),
+    7: ('accueil-cabinet-cdc-meknes.jpg', "Bureau de consultation du Dr Boukadous"),
+    8: ('hero-poster.jpg', "Entrée du cabinet et mur à la citation sur le sourire"),
+    12: ('cabinet-couloir-meknes.jpg', "Couloir et cloisons vitrées du cabinet"),
+    19: ('reception-cabinet-cdc-meknes.jpg', "Réception du Centre Dentaire Chifaa à Meknès"),
+    20: ('cabinet-scan-3d-empreinte.jpg', "Empreinte numérique en 3D à l'écran"),
+    21: ('cabinet-salle-de-soins-meknes.jpg', "Fauteuil et unit dentaire"),
+    22: ('cabinet-scan-3d-empreinte.jpg', "Scanner intra-oral"),
+    23: ('cabinet-sterilisation-meknes.jpg', "Autoclave de stérilisation"),
+    24: ('cabinet-radiologie-3d-meknes.jpg', "Radiologie 3D"),
+    25: ('accueil-cabinet-cdc-meknes.jpg', "Logiciel de radiologie à l'écran"),
+    26: ('cabinet-sterilisation-meknes.jpg', "Instruments stérilisés"),
+    27: (None, ''),   # portrait du Dr : logo en attendant la photo
+    30: ('accueil-cabinet-cdc-meknes.jpg', "Bureau du Centre Dentaire Chifaa, avenue des FAR à Meknès"),
+}
+
+
 def ph(cls, n, title, fmt='', reco='', tone='light', tag='div', attrs=''):
     """Bloc « photo à prendre ». Petit bloc : numéro + titre. Grand bloc : + format et recommandations."""
+    if not SHOW_BRIEFS and n in PH_PHOTOS:
+        f, alt = PH_PHOTOS[n]
+        inner = ('<img src="/assets/img/%s" alt="%s" loading="lazy">' % (f, H.escape(alt))) if f else '<span class="ab-tooth" aria-hidden="true"></span>'
+        return '<%s class="ph ph-photo%s %s"%s>%s</%s>' % (tag, '' if f else ' ph-logo', cls, attrs, inner, tag)
     body = '<span class="ph-label mono">%sPHOTO %s%s</span><span class="ph-title">%s</span>' % (CAM, n, (' · ' + fmt) if fmt else '', title)
     if reco:
         body += '<span class="ph-reco">%s</span>' % reco
@@ -494,8 +523,6 @@ AB_TEAM = [
     ("Dr Taoufik Boukadous", "CHIRURGIEN-DENTISTE",
      "Docteur en médecine dentaire, diplômé de la Faculté de Médecine Internationale de Rabat (UIR), et titulaire d'un Diplôme Universitaire d'Implantologie et de Chirurgie Orale.",
      "Portrait du Dr Boukadous", "Tenue de travail, au cabinet, regard caméra, épaules détendues. Même cadrage et même fond pour toute l'équipe."),
-    ("[Prénom Nom]", "[FONCTION]", TODO_T + " : rôle au cabinet et ce que ce membre apporte aux patients, en deux phrases.",
-     "Portrait d'un membre de l'équipe", "Même fond, même lumière et même cadrage que le portrait du Dr, pour une grille homogène."),
 ]
 
 TOOTH = '<span class="ab-tooth" aria-hidden="true"></span>'
@@ -574,9 +601,9 @@ def cabinet_about(B):
         <div class="ab-media" data-ab-in>
           <a class="ab-media-rating" href="%(maps)s" target="_blank" rel="noopener">
             <span class="ab-circles" aria-hidden="true">
-              <span class="ab-circle ph-circle mono">PHOTO 9<br>DÉTAIL</span>
-              <span class="ab-circle ph-circle mono">PHOTO 10<br>DÉTAIL</span>
-              <span class="ab-circle ph-circle mono">PHOTO 11<br>DÉTAIL</span>
+              <img class="ab-circle" src="/assets/img/cabinet-salle-de-soins-meknes.jpg" alt="" loading="lazy">
+              <img class="ab-circle" src="/assets/img/reception-cabinet-cdc-meknes.jpg" alt="" loading="lazy">
+              <img class="ab-circle" src="/assets/img/cabinet-radiologie-3d-meknes.jpg" alt="" loading="lazy">
             </span>
             <span class="ab-rating mono">NOTÉ 5,0 / 5 · 43 AVIS GOOGLE</span>
           </a>

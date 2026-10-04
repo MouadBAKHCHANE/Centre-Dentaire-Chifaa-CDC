@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261004v'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261005c'          # version de dark.css / dark.js (cache navigateur)
 EMAIL = 'centredentairechifaa@gmail.com'
 ICE = '003546775000034'
 ORDRE = '7326'
@@ -368,7 +368,7 @@ def mark_current(header, footer, path):
     footer = footer.replace('href="%s"' % path, 'href="%s" aria-current="page"' % path)
     return header, footer
 
-def head(title, desc, path, og_img, jsonld, noindex=False):
+def head(title, desc, path, og_img, jsonld, noindex=False, preload=None):
     url = SITE + path
     robots = '<meta name="robots" content="noindex, follow">\n' if noindex else ''
     return '''<!DOCTYPE html>
@@ -395,12 +395,13 @@ def head(title, desc, path, og_img, jsonld, noindex=False):
 <script type="application/ld+json">
 %(ld)s
 </script>
-<link rel="stylesheet" href="/dark.css?v=%(v)s">
+%(pre)s<link rel="stylesheet" href="/dark.css?v=%(v)s">
 </head>
 <body>
 
 ''' % dict(t=H.escape(title), d=H.escape(desc), url=url, site=SITE, img=og_img, robots=robots,
-           ld=json.dumps(jsonld, ensure_ascii=False, indent=1), v=VER)
+           ld=json.dumps(jsonld, ensure_ascii=False, indent=1), v=VER,
+           pre=('<link rel="preload" as="image" href="/assets/img/%s" fetchpriority="high">\n' % preload) if preload else '')
 
 SCRIPTS = '''
 
@@ -445,7 +446,7 @@ def hero(img, w, h, pills, h1, stats):
     return '''
   <section class="tp-hero">
     <img class="tp-hero-fill" src="/assets/img/%s" alt="" aria-hidden="true">
-    <img class="tp-hero-bg" src="/assets/img/%s" alt="" width="%d" height="%d" fetchpriority="high">
+    <img class="tp-hero-bg" src="/assets/img/%s" alt="" width="%d" height="%d" fetchpriority="high" decoding="async">
     <div class="tp-hero-copy">
       <nav class="tp-pills" aria-label="Fil d'Ariane">%s</nav>
       <h1 data-lines>%s</h1>
@@ -454,7 +455,7 @@ def hero(img, w, h, pills, h1, stats):
       %s
     </div>
   </section>
-''' % (img, img, w, h, pl, h1, '\n      '.join(stats))
+''' % (img.replace('.jpg', '.webp'), img.replace('.jpg', '.webp'), w, h, pl, h1, '\n      '.join(stats))
 
 def gallery(items, group):
     figs = ''.join('    <figure data-fade><a class="tp-lb-link" href="/assets/img/%s" data-lightbox="%s" aria-label="Agrandir la photo" '
@@ -744,7 +745,7 @@ def contact_page():
 <main id="top">
 
   <section class="cf-hero">
-    <img class="cf-hero-bg" src="/assets/img/contact-hero-brosse-a-dents.jpg" alt="Main tendant une brosse à dents électrique vers une autre main, sur fond bleu" fetchpriority="high">
+    <img class="cf-hero-bg" src="/assets/img/reception-cabinet-cdc-meknes.jpg" alt="Accueil et comptoir de réception du Centre Dentaire Chifaa à Meknès" fetchpriority="high">
     <span class="cf-hero-tint" aria-hidden="true"></span>
     <h1 class="cf-hero-title">Contact<span class="sr-only"> du Centre Dentaire Chifaa, dentiste à Meknès</span></h1>
   </section>
@@ -825,15 +826,14 @@ def mentions_page():
       "<li><b>Numéro d'inscription au Conseil national de l'Ordre des médecins dentistes</b> : %(ordre)s</li></ul>"
       "<p><b>Directeur de la publication</b> : Dr Taoufik Boukadous.</p>" % dict(mail=EMAIL, ice=ICE, ordre=ORDRE)),
      ("Conception et réalisation", "<p>Site conçu et développé par MouaDev.</p>"),
-     ("Hébergement", "<p>Le site est hébergé par Vercel Inc., États-Unis, <a href=\"https://vercel.com\" target=\"_blank\" rel=\"noopener\">vercel.com</a>.</p>"),
+     ("Hébergement", "<p>Le site est hébergé par Vercel Inc., <a href=\"https://vercel.com\" target=\"_blank\" rel=\"noopener\">vercel.com</a>.</p>"),
      ("Nature des informations", "<p>Les contenus de ce site sont fournis à titre d'information générale sur les soins proposés par le cabinet. Ils ne remplacent pas une consultation : seul un examen clinique permet d'établir un diagnostic et un plan de traitement adaptés. Aucun tarif n'est affiché ; un devis écrit est remis après la consultation.</p>"),
      ("Propriété intellectuelle", "<p>Le logo, les textes et les photographies du cabinet sont la propriété du Centre Dentaire Chifaa. Toute reproduction sans autorisation écrite est interdite. Certaines photographies d'illustration proviennent de Wikimedia Commons et de banques d'images libres (StockSnap, Rawpixel) et sont utilisées selon leur licence Creative Commons, CC0 ou domaine public ; leurs auteurs sont crédités ci-dessous.</p>"),
-     ("Crédits photographiques", credits_html()),
      ("Liens externes", "<p>Le site contient des liens vers des services tiers : Google Maps, WhatsApp, Instagram et la plateforme de réservation Dentisto. Le cabinet n'est pas responsable du contenu de ces services.</p>"),
      ("Données personnelles", "<p>Le traitement des données personnelles est décrit dans notre <a href=\"/politique-de-confidentialite/\">politique de confidentialité</a>.</p>"),
     ]
     return legal_page('/mentions-legales/', "Mentions légales | Centre Dentaire Chifaa, Meknès", "Mentions légales", s,
-                      "Mentions légales du site du Centre Dentaire Chifaa, cabinet dentaire du Dr Taoufik Boukadous à Meknès : éditeur, hébergement, propriété intellectuelle et crédits.")
+                      "Mentions légales du Centre Dentaire Chifaa, cabinet du Dr Taoufik Boukadous à Meknès : éditeur, hébergement, propriété intellectuelle, crédits.")
 
 def privacy_page():
     s = [
@@ -848,7 +848,7 @@ def privacy_page():
      ("Vos droits", "<p>Vous disposez d'un droit d'accès, de rectification et d'opposition au traitement de vos données. Pour l'exercer, contactez le cabinet au 05 35 51 69 24 ou par e-mail à <a href=\"mailto:centredentairechifaa@gmail.com\">centredentairechifaa@gmail.com</a>. Vous pouvez également saisir la Commission nationale de contrôle de la protection des données à caractère personnel (CNDP), <a href=\"https://www.cndp.ma\" target=\"_blank\" rel=\"noopener\">www.cndp.ma</a>.</p>"
 ),
     ]
-    return legal_page('/politique-de-confidentialite/', "Politique de confidentialité | Centre Dentaire Chifaa, Meknès", "Politique de confidentialité", s,
+    return legal_page('/politique-de-confidentialite/', "Politique de confidentialité | Centre Dentaire Chifaa", "Politique de confidentialité", s,
                       "Politique de confidentialité du site du Centre Dentaire Chifaa à Meknès : données collectées, services tiers, cookies et droits selon la loi 09-08.")
 
 # --------------------------------------------------------------------------------------------
@@ -856,7 +856,8 @@ def write(page, header, footer, fabs):
     path, title, desc, img, ld, body = page
     noindex = path in ('/mentions-legales/', '/politique-de-confidentialite/')
     h, f = mark_current(header, footer, path)
-    out = head(title, desc, path, img, ld, noindex) + h + '\n' + body + '\n' + f + '\n\n' + fabs.replace('href="/"', 'href="#top"') + SCRIPTS
+    pre = re.search(r'class="tp-hero-bg" src="/assets/img/([^"]+)"', body)
+    out = head(title, desc, path, img, ld, noindex, pre.group(1) if pre else None) + h + '\n' + body + '\n' + f + '\n\n' + fabs.replace('href="/"', 'href="#top"') + SCRIPTS
     target = os.path.join(ROOT, path.strip('/').replace('/', os.sep), 'index.html')
     os.makedirs(os.path.dirname(target), exist_ok=True)
     open(target, 'w', encoding='utf-8').write(out)

@@ -2270,3 +2270,14 @@ h2.qs-tag { margin: 0; font-weight: inherit; line-height: inherit; }
 .ab-bio-r p:last-child { font-weight: 400; }
 .ab-bio-r b { font-weight: 700; color: #151210; }
 .ab-bio-r p:last-child b { color: #0E3E68; }
+
+/* photos réelles à la place des consignes « photo à prendre » */
+.ph.ph-photo { padding: 0; outline: none; background: #0E2740; }
+.ph.ph-photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.ph.ph-logo { display: grid; place-items: center; background: radial-gradient(circle at 50% 40%, #16446F, #0A1D30 70%); color: rgba(244, 242, 240, .85); }
+.ph.ph-logo .ab-tooth { width: 34%; height: auto; aspect-ratio: 48 / 45; }
+img.ab-circle { object-fit: cover; }
+.ab-team-grid:has(> :only-child) { grid-template-columns: minmax(0, 440px); justify-content: center; }
+.ph.ph-logo .ab-tooth { width: clamp(72px, 22%, 120px); height: auto; aspect-ratio: 48 / 45; background: currentColor; }
+.ph.ph-logo { display: flex; align-items: center; justify-content: center; }
+.ph.ph-logo .ab-tooth { width: 96px; flex: 0 0 auto; }
