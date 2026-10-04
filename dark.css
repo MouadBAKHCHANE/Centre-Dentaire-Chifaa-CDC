@@ -2138,3 +2138,43 @@ h2.qs-tag { margin: 0; font-weight: inherit; line-height: inherit; }
   }
   .st-slide .ba-img { object-fit: contain; }
 }
+
+/* horaires sur mobile : semaine sur une ligne, samedi sur la suivante */
+@media (max-width: 767px) { .tp-book-hours span { display: block; } }
+
+/* contact, ordinateur : carte du plan plus large, bloc « Planifiez votre visite » plus étroit ; horaires sur deux lignes */
+@media (min-width: 992px) {
+  .cf-duo { grid-template-columns: minmax(360px, 2fr) 3fr; }
+  .cf-duo .tp-book-hours span { display: block; }
+  .cf-duo .tp-book.tp-book-solo { --bk-pad: clamp(28px, 3vw, 48px); }
+}
+@media (min-width: 992px) { .cf-duo .tp-book.tp-book-solo { align-content: center; } .cf-duo .tp-book-solo .tp-book-copy { align-self: center; } }
+
+/* blog « Prenez rendez-vous », ordinateur : côté gauche en miroir du côté droit (photo du milieu plus à l'extérieur) */
+@media (min-width: 768px) {
+  .ab-book-fl .fl-1 { --x: calc(var(--ring) * -.612); --y: calc(var(--ring) * -.285); }
+  .ab-book-fl .fl-4 { --s: calc(var(--ring) * .24); --x: calc(var(--ring) * -.875); --y: 0px; }
+  .ab-book-fl .fl-3 { --s: calc(var(--ring) * .28); --x: calc(var(--ring) * -.612); --y: calc(var(--ring) * .285); }
+}
+@media (min-width: 768px) { .ab-book-fl .fl-1, .ab-book-fl .fl-3 { --s: calc(var(--ring) * .24); } .ab-book-fl .fl-4 { --s: calc(var(--ring) * .28); } }
+
+/* soins, mobile : avant / après compact, visible en entier dans l'écran sous l'en-tête */
+@media (max-width: 767px) {
+  .st-slider { height: 572px; }
+  .st-slide { grid-template-rows: 206px 1fr; }
+  .st-vcard { padding: 16px 18px 76px; gap: 12px; }
+  .st-vbody { gap: 10px; }
+  .st-pills { font-size: 12px; }
+  .st-pills span { padding: 7px 12px; }
+  .st-vcard .st-slide-link h2 { font-size: 21px; }
+  .st-slide-p { font-size: 15px; line-height: 1.5; }
+  .st-vcard .btn { min-height: 42px; }
+  .st-count { top: 238px; right: 26px; }
+  .st-bar { padding: 0 18px 16px; }
+  .st-arrow { width: 44px; height: 44px; }
+  .ba-tag { top: 10px; padding: 6px 10px; font-size: 11px; }
+  .ba-tag-l { left: 10px; } .ba-tag-r { right: 10px; }
+  .ba-note { bottom: 10px; }
+  .ba-knob { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
+}
+@media (max-width: 767px) and (max-height: 700px) { .st-slider { height: 540px; } .st-slide { grid-template-rows: 176px 1fr; } .st-count { top: 208px; } }

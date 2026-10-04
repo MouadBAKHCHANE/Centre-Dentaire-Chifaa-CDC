@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261003l'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261004h'          # version de dark.css / dark.js (cache navigateur)
 BOOK = 'https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112'
 MAPS = 'https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA'
 WA = 'https://wa.me/message/MDYCV375HLAJO1'
@@ -486,14 +486,6 @@ def cta_arc():
         <li><span class="tp-cta-chk" aria-hidden="true"></span>Spécialistes sur place, sans orientation extérieure</li>
       </ul>
     </div>
-    <div class="tp-cta-contact" data-fade>
-      <div class="tp-book-links">
-        %(l1)s
-        %(l3)s
-        %(l4)s
-      </div>
-      <p class="tp-book-hours">Lundi au vendredi de 8h30 à 17h30, samedi de 9h00 à 14h30.</p>
-    </div>
     <div class="tp-arc" aria-hidden="true">
       <svg class="tp-arc-svg" viewBox="0 95 1600 317" preserveAspectRatio="xMidYMid meet" data-arc>
         <defs><path id="tp-arc-path" d="M -60 440 Q 800 -70 1660 440" fill="none"/></defs>
@@ -501,10 +493,7 @@ def cta_arc():
       </svg>
     </div>
   </section>
-''' % dict(book=BOOK,
-           l1=clink('phone', '05 35 51 69 24', 'tel:+212535516924'),
-           l3=clink(WA_IC, 'WhatsApp', WA, True),
-           l4=clink('pin', 'Av des FAR, Meknès', MAPS, True))
+''' % dict(book=BOOK)
 
 def clink(icon, text, href, ext=False):
     t = ' rel="noopener" target="_blank"' if ext else ''
@@ -526,9 +515,8 @@ def booking(checked=None, title='Planifiez votre visite'):
       <div class="tp-book-links" data-fade>
         <div class="tp-book-row">%(l1)s%(l3)s</div>
         <a class="btn btn-navy btn-big tp-book-cta" href="%(book)s" target="_blank" rel="noopener">Prendre rendez-vous%(orb)s</a>%(l2)s
-        %(l4)s
       </div>
-      <p class="tp-book-hours" data-fade>Lundi au vendredi de 8h30 à 17h30, samedi de 9h00 à 14h30.</p>
+      <p class="tp-book-hours" data-fade><span>Lundi au vendredi de 8h30 à 17h30,</span> <span>samedi de 9h00 à 14h30.</span></p>
     </div>
 
     <div class="tp-form-card" data-fade>
