@@ -2249,3 +2249,24 @@ h2.qs-tag { margin: 0; font-weight: inherit; line-height: inherit; }
   .tp-hero .tp-stats { margin-top: 22px; }
   .tp-hero::before { background: linear-gradient(0deg, var(--navy) 0%, rgba(10,29,48,.94) 34%, rgba(10,29,48,.55) 56%, rgba(10,29,48,0) 74%); }
 }
+
+/* le cabinet, ordinateur : photo « L'entrée du cabinet » plus grande, bloc adresse / horaires plus compact */
+@media (min-width: 1000px) {
+  .ab-bento-img { aspect-ratio: 421 / 300; }
+  .ab-locs { padding: 18px 16px; gap: 12px; }
+  .ab-loc-tag { padding: 6px 11px; font-size: 11.5px; }
+  .ab-loc h3 { margin: 8px 0 6px; font-size: clamp(20px, 1.6vw, 24px); }
+  .ab-loc p { font-size: 14px; line-height: 1.4; }
+}
+
+/* le cabinet : « Mon parcours » écrit à la main (Caveat, SIL Open Font License, auto-hébergée) */
+@font-face { font-family: "Caveat"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(assets/fonts/caveat-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Caveat"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(assets/fonts/caveat-latin-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+.ab-bio-r { max-width: 62ch; }
+.ab-bio-r p { font-family: "Caveat", "Segoe Print", cursive; font-size: clamp(22px, 1.75vw, 27px); line-height: 1.38; color: #2B241F; margin-bottom: 16px; }
+.ab-bio-r p:last-child { font-weight: 600; color: #0E3E68; }
+@media (max-width: 767px) { .ab-bio-r p { font-size: 21px; line-height: 1.35; } }
+/* « Mon parcours » : mots-clés en gras, dernier paragraphe en bleu sans tout passer en gras */
+.ab-bio-r p:last-child { font-weight: 400; }
+.ab-bio-r b { font-weight: 700; color: #151210; }
+.ab-bio-r p:last-child b { color: #0E3E68; }
