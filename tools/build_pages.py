@@ -913,6 +913,8 @@ def sitemap(paths):
     mod = lastmods(urls)
     items = ''.join('  <url><loc>%s%s</loc><lastmod>%s</lastmod><changefreq>monthly</changefreq><priority>%s</priority></url>\n'
                     % (SITE, p, mod[p], pri.get(p, '0.9' if p.startswith('/soins/') else '0.7' if p.startswith('/blog/') else '0.6')) for p in urls)
+    # version texte (une URL par ligne), acceptée aussi par Google et Bing
+    open(os.path.join(ROOT, 'sitemap.txt'), 'w', encoding='utf-8', newline='\n').write(''.join(SITE + p + '\n' for p in urls))
     open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8').write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s</urlset>\n' % items)
 
