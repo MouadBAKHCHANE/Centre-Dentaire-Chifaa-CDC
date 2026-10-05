@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261005c'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261005d'          # version de dark.css / dark.js (cache navigateur)
 EMAIL = 'centredentairechifaa@gmail.com'
 ICE = '003546775000034'
 ORDRE = '7326'
@@ -814,6 +814,28 @@ def credits_html():
                       H.escape(c['license']), H.escape(c['url']), H.escape(c.get('source', 'Wikimedia Commons'))) for c in items)
     return '<ul>%s</ul>' % rows
 
+def credits_short():
+    """Crédits photo en une ligne : auteur (licence) par photo source, sans les images propres au cabinet."""
+    p = os.path.join(ROOT, 'tools', 'credits-photos.json')
+    items = json.load(open(p, encoding='utf-8')) if os.path.exists(p) else []
+    seen, parts = set(), []
+    for c in items:
+        if 'CDC' in (c.get('license') or '') or c.get('source', 'Wikimedia Commons') != 'Wikimedia Commons':
+            continue
+        lic = c['license']
+        if lic in ('CC0', 'Public domain'):
+            continue   # aucune attribution exigée
+        author = (c['author'] or 'auteur non précisé').split(',')[0].strip()
+        author = re.sub(r'^w:\s*', '', author)
+        author = re.sub(r'^The original uploader was (\S+).*$', r'\1', author)
+        key = (author, lic)
+        if key in seen:
+            continue
+        seen.add(key)
+        parts.append('<a href="%s" target="_blank" rel="noopener">%s</a> (%s)' % (H.escape(c['url']), H.escape(author), H.escape(lic)))
+    return ("<p>Certaines photos d'illustration proviennent de Wikimedia Commons et sont utilisées selon leur licence : "
+            + ', '.join(parts) + '.</p>')
+
 TODO = '<span class="legal-todo">[à compléter]</span>'
 
 def mentions_page():
@@ -829,6 +851,7 @@ def mentions_page():
      ("Hébergement", "<p>Le site est hébergé par Vercel Inc., <a href=\"https://vercel.com\" target=\"_blank\" rel=\"noopener\">vercel.com</a>.</p>"),
      ("Nature des informations", "<p>Les contenus de ce site sont fournis à titre d'information générale sur les soins proposés par le cabinet. Ils ne remplacent pas une consultation : seul un examen clinique permet d'établir un diagnostic et un plan de traitement adaptés. Aucun tarif n'est affiché ; un devis écrit est remis après la consultation.</p>"),
      ("Propriété intellectuelle", "<p>Le logo, les textes et les photographies du cabinet sont la propriété du Centre Dentaire Chifaa. Toute reproduction sans autorisation écrite est interdite. Certaines photographies d'illustration proviennent de Wikimedia Commons et de banques d'images libres (StockSnap, Rawpixel) et sont utilisées selon leur licence Creative Commons, CC0 ou domaine public ; leurs auteurs sont crédités ci-dessous.</p>"),
+     ("Crédits photographiques", credits_short()),
      ("Liens externes", "<p>Le site contient des liens vers des services tiers : Google Maps, WhatsApp, Instagram et la plateforme de réservation Dentisto. Le cabinet n'est pas responsable du contenu de ces services.</p>"),
      ("Données personnelles", "<p>Le traitement des données personnelles est décrit dans notre <a href=\"/politique-de-confidentialite/\">politique de confidentialité</a>.</p>"),
     ]
