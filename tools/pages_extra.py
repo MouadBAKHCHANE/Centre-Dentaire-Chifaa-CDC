@@ -674,13 +674,6 @@ def cabinet_about(B):
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "AboutPage", "url": B.SITE + path, "name": "Le cabinet – Centre Dentaire Chifaa", "about": B.DENTIST,
          "mentions": {"@id": B.SITE + "/#dr-boukadous"}},
-        {"@type": "Person", "@id": B.SITE + "/#dr-boukadous", "name": "Dr Taoufik Boukadous", "honorificPrefix": "Dr",
-         "jobTitle": "Chirurgien-dentiste", "worksFor": {"@id": B.SITE + "/#cabinet"}, "url": B.SITE + path + "#ab-bio-h",
-         "alumniOf": {"@type": "CollegeOrUniversity", "name": "Université Internationale de Rabat (UIR)"},
-         "hasCredential": [
-             {"@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "Diplôme de Docteur en Médecine Dentaire"},
-             {"@type": "EducationalOccupationalCredential", "credentialCategory": "certificate", "name": "Diplôme Universitaire d'Implantologie et de Chirurgie Orale"}],
-         "knowsAbout": ["Implantologie", "Chirurgie orale", "Chirurgie implantaire guidée", "Esthétique du sourire", "Endodontie", "Restaurations en composite"]},
         B.crumbs([('Accueil', '/'), ('Le cabinet', path)])]}
     return (path, "Le cabinet | Centre Dentaire Chifaa, dentiste à Meknès",
             "Le Centre Dentaire Chifaa du Dr Taoufik Boukadous, avenue des FAR à Meknès : six spécialités, radiologie 3D sur place et empreinte numérique.",

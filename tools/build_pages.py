@@ -387,6 +387,8 @@ def head(title, desc, path, og_img, jsonld, noindex=False, preload=None):
 <meta property="og:locale" content="fr_MA">
 <meta property="og:site_name" content="Centre Dentaire Chifaa">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+<link rel="icon" type="image/x-icon" sizes="48x48" href="/favicon.ico">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2">
@@ -424,6 +426,108 @@ DENTIST = {"@type": "Dentist", "@id": SITE + "/#cabinet", "name": "Centre Dentai
                {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:30", "closes": "17:30"},
                {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:30"}],
            "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "43"}}
+
+# --------------------------------------------------------------------------------------------
+# Schéma : graphe JSON-LD commun à toutes les pages (identifiants stables, liés par @id)
+# --------------------------------------------------------------------------------------------
+ID_SITE, ID_ORG, ID_DR = SITE + '/#website', SITE + '/#cabinet', SITE + '/#dr-boukadous'
+INSTAGRAM = 'https://www.instagram.com/centredentairechifaa.ma/'
+
+WEBSITE = {"@type": "WebSite", "@id": ID_SITE, "url": SITE + "/", "name": "Centre Dentaire Chifaa",
+           "alternateName": "CDC Meknès", "inLanguage": "fr", "publisher": {"@id": ID_ORG}}
+
+PERSON = {"@type": "Person", "@id": ID_DR, "name": "Dr Taoufik Boukadous", "givenName": "Taoufik", "familyName": "Boukadous",
+          "honorificPrefix": "Dr", "jobTitle": "Chirurgien-dentiste", "url": SITE + "/le-cabinet/",
+          "worksFor": {"@id": ID_ORG},
+          "alumniOf": {"@type": "CollegeOrUniversity", "name": "Université Internationale de Rabat (UIR)"},
+          "hasCredential": [
+              {"@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "Diplôme de Docteur en Médecine Dentaire"},
+              {"@type": "EducationalOccupationalCredential", "credentialCategory": "certificate", "name": "Diplôme Universitaire d'Implantologie et de Chirurgie Orale"}],
+          "knowsAbout": ["Implantologie", "Chirurgie orale", "Chirurgie implantaire guidée", "Esthétique du sourire", "Endodontie", "Restaurations en composite"],
+          "knowsLanguage": ["fr", "ar"]}
+
+
+def org_full():
+    d = dict(DENTIST)
+    d.update({
+        "alternateName": "CDC Meknès",
+        "description": "Centre dentaire pluridisciplinaire à Meknès : orthodontie, implants dentaires, chirurgie orale, parodontie, prothèse dentaire et pédodontie.",
+        "logo": {"@type": "ImageObject", "@id": SITE + "/#logo", "url": SITE + "/assets/logo-cdc.png", "width": 1156, "height": 479, "caption": "Centre Dentaire Chifaa"},
+        "image": [SITE + "/assets/img/og-centre-dentaire-chifaa.jpg", SITE + "/assets/img/reception-cabinet-cdc-meknes.jpg",
+                  SITE + "/assets/img/cabinet-salle-de-soins-meknes.jpg"],
+        "priceRange": "$$", "currenciesAccepted": "MAD", "isAcceptingNewPatients": True,
+        "knowsLanguage": ["fr", "ar"],
+        "areaServed": {"@type": "City", "name": "Meknès"},
+        "founder": {"@id": ID_DR}, "employee": [{"@id": ID_DR}],
+        "sameAs": [INSTAGRAM, BOOK, MAPS],
+        "contactPoint": {"@type": "ContactPoint", "contactType": "customer service", "telephone": "+212535516924",
+                         "email": EMAIL, "availableLanguage": ["fr", "ar"], "areaServed": "MA"},
+        "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Soins dentaires", "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "MedicalProcedure", "@id": SITE + "/soins/%s-meknes/#procedure" % s,
+                                               "name": SOIN_NAME[s], "url": SITE + "/soins/%s-meknes/" % s}} for s in SOINS_ORDER]},
+    })
+    return d
+
+
+PAGE_TYPES = ('WebPage', 'AboutPage', 'ContactPage', 'CollectionPage', 'MedicalWebPage', 'ProfilePage')
+
+
+def _refs(node):
+    """Remplace les copies complètes du cabinet par une référence @id."""
+    if isinstance(node, dict):
+        if node.get('@id') == ID_ORG and len(node) > 2:
+            return {"@id": ID_ORG}
+        return {k: _refs(v) for k, v in node.items()}
+    if isinstance(node, list):
+        return [_refs(x) for x in node]
+    return node
+
+
+def build_graph(ld, path, title, desc, img):
+    url = SITE + path
+    nodes = ld.get('@graph', [ld]) if isinstance(ld, dict) else list(ld)
+    nodes = [dict(n) for n in nodes if n.get('@type') not in ('WebSite',) and n.get('@id') not in (ID_ORG, ID_DR)]
+    nodes = [_refs(n) if n.get('@type') != 'Dentist' else n for n in nodes]
+    nodes = [n for n in nodes if not (n.get('@type') == 'Dentist')]
+    crumb = next((n for n in nodes if n.get('@type') == 'BreadcrumbList'), None)
+    if crumb:
+        crumb['@id'] = url + '#breadcrumb'
+    page = next((n for n in nodes if n.get('@type') in PAGE_TYPES), None)
+    proc = next((n for n in nodes if n.get('@type') == 'MedicalProcedure'), None)
+    post = next((n for n in nodes if n.get('@type') == 'BlogPosting'), None)
+    if page is None:
+        page = {"@type": "MedicalWebPage" if proc else "WebPage"}
+        nodes.insert(0, page)
+    page.update({"@id": url + "#webpage", "url": url, "name": title, "description": desc, "inLanguage": "fr",
+                 "isPartOf": {"@id": ID_SITE},
+                 "primaryImageOfPage": {"@type": "ImageObject", "url": SITE + "/assets/img/" + img}})
+    page.setdefault("about", {"@id": ID_ORG})
+    if crumb:
+        page["breadcrumb"] = {"@id": url + "#breadcrumb"}
+    if proc:
+        proc.pop("provider", None)
+        page["mainEntity"] = {"@id": proc["@id"]}
+        page["about"] = {"@id": proc["@id"]}
+        page["audience"] = {"@type": "MedicalAudience", "audienceType": "Patient"}
+        page["reviewedBy"] = {"@id": ID_DR}
+    if post:
+        post["mainEntityOfPage"] = {"@id": url + "#webpage"}
+        post["publisher"] = {"@id": ID_ORG}
+        post["author"] = {"@id": ID_ORG}
+        post["isPartOf"] = {"@type": "Blog", "@id": SITE + "/blog/#blog", "name": "Blog du Centre Dentaire Chifaa", "url": SITE + "/blog/"}
+        if isinstance(post.get("image"), str):
+            post["image"] = {"@type": "ImageObject", "url": post["image"]}
+        art = next((a for a in ARTICLES_REF if path.endswith('/%s/' % a['slug'])), None)
+        if art and art.get('soin'):
+            post["about"] = {"@id": SITE + "/soins/%s-meknes/#procedure" % art['soin'], "name": SOIN_NAME[art['soin']]}
+        page["mainEntity"] = {"@id": post["@id"]}
+    if path == '/le-cabinet/':
+        page["mainEntity"] = {"@id": ID_ORG}
+        page["mentions"] = {"@id": ID_DR}
+    return {"@context": "https://schema.org", "@graph": [WEBSITE, org_full(), PERSON] + nodes}
+
+
+ARTICLES_REF = []
 
 def crumbs(items):
     return {"@type": "BreadcrumbList", "itemListElement": [
@@ -880,6 +984,7 @@ def write(page, header, footer, fabs):
     noindex = path in ('/mentions-legales/', '/politique-de-confidentialite/')
     h, f = mark_current(header, footer, path)
     pre = re.search(r'class="tp-hero-bg" src="/assets/img/([^"]+)"', body)
+    ld = build_graph(ld, path, title, desc, img)
     out = head(title, desc, path, img, ld, noindex, pre.group(1) if pre else None) + h + '\n' + body + '\n' + f + '\n\n' + fabs.replace('href="/"', 'href="#top"') + SCRIPTS
     target = os.path.join(ROOT, path.strip('/').replace('/', os.sep), 'index.html')
     os.makedirs(os.path.dirname(target), exist_ok=True)
@@ -923,10 +1028,23 @@ def main():
     header, footer, fabs = absolutize(header), absolutize(footer), absolutize(fabs)
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import pages_extra
+    from articles import ARTICLES
+    ARTICLES_REF.extend(ARTICLES)
     pages = [pages_extra.soins_hub(sys.modules[__name__])] + [soin_page(s) for s in SOINS_ORDER] + [pages_extra.cabinet_about(sys.modules[__name__]), contact_page()] + pages_extra.pages(sys.modules[__name__])         + [mentions_page(), privacy_page()]
     for p in pages:
         write(p, header, footer, fabs)
     sitemap([p[0] for p in pages])
+    home_ld = build_graph({"@graph": [{"@type": "WebPage"}]}, '/',
+                          'Dentiste à Meknès | Centre Dentaire Chifaa – Dr Boukadous',
+                          'Centre Dentaire Chifaa, dentiste à Meknès (Av. des FAR) : implants, orthodontie, parodontie, pédodontie. Devis écrit.',
+                          'og-centre-dentaire-chifaa.jpg')
+    home_ld['@graph'][3]['mainEntity'] = {'@id': ID_ORG}
+    idx = os.path.join(ROOT, 'index.html')
+    src = open(idx, encoding='utf-8', newline='').read()
+    blk = json.dumps(home_ld, ensure_ascii=False, indent=1)
+    src2 = re.sub(r'(<script type="application/ld\+json">\r?\n).*?(\r?\n</script>)', lambda m: m.group(1) + blk + m.group(2), src, count=1, flags=re.S)
+    if src2 != src:
+        open(idx, 'w', encoding='utf-8', newline='').write(src2)
     print('sitemap.xml mis à jour')
 
 if __name__ == '__main__':

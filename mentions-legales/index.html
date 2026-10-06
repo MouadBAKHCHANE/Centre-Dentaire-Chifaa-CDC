@@ -15,6 +15,8 @@
 <meta property="og:locale" content="fr_MA">
 <meta property="og:site_name" content="Centre Dentaire Chifaa">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+<link rel="icon" type="image/x-icon" sizes="48x48" href="/favicon.ico">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=2">
@@ -25,9 +27,234 @@
  "@context": "https://schema.org",
  "@graph": [
   {
+   "@type": "WebSite",
+   "@id": "https://www.centredentairechifaa.ma/#website",
+   "url": "https://www.centredentairechifaa.ma/",
+   "name": "Centre Dentaire Chifaa",
+   "alternateName": "CDC Meknès",
+   "inLanguage": "fr",
+   "publisher": {
+    "@id": "https://www.centredentairechifaa.ma/#cabinet"
+   }
+  },
+  {
+   "@type": "Dentist",
+   "@id": "https://www.centredentairechifaa.ma/#cabinet",
+   "name": "Centre Dentaire Chifaa",
+   "telephone": "+212535516924",
+   "email": "centredentairechifaa@gmail.com",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Bureau N1, Imm Bureaux El Menzah N5, Av des FAR",
+    "addressLocality": "Meknès",
+    "postalCode": "50000",
+    "addressCountry": "MA"
+   },
+   "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 33.8947626,
+    "longitude": -5.5497537
+   },
+   "url": "https://www.centredentairechifaa.ma/",
+   "hasMap": "https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA",
+   "logo": {
+    "@type": "ImageObject",
+    "@id": "https://www.centredentairechifaa.ma/#logo",
+    "url": "https://www.centredentairechifaa.ma/assets/logo-cdc.png",
+    "width": 1156,
+    "height": 479,
+    "caption": "Centre Dentaire Chifaa"
+   },
+   "image": [
+    "https://www.centredentairechifaa.ma/assets/img/og-centre-dentaire-chifaa.jpg",
+    "https://www.centredentairechifaa.ma/assets/img/reception-cabinet-cdc-meknes.jpg",
+    "https://www.centredentairechifaa.ma/assets/img/cabinet-salle-de-soins-meknes.jpg"
+   ],
+   "medicalSpecialty": "https://schema.org/Dentistry",
+   "openingHoursSpecification": [
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+     ],
+     "opens": "08:30",
+     "closes": "17:30"
+    },
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": "Saturday",
+     "opens": "09:00",
+     "closes": "14:30"
+    }
+   ],
+   "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "43"
+   },
+   "alternateName": "CDC Meknès",
+   "description": "Centre dentaire pluridisciplinaire à Meknès : orthodontie, implants dentaires, chirurgie orale, parodontie, prothèse dentaire et pédodontie.",
+   "priceRange": "$$",
+   "currenciesAccepted": "MAD",
+   "isAcceptingNewPatients": true,
+   "knowsLanguage": [
+    "fr",
+    "ar"
+   ],
+   "areaServed": {
+    "@type": "City",
+    "name": "Meknès"
+   },
+   "founder": {
+    "@id": "https://www.centredentairechifaa.ma/#dr-boukadous"
+   },
+   "employee": [
+    {
+     "@id": "https://www.centredentairechifaa.ma/#dr-boukadous"
+    }
+   ],
+   "sameAs": [
+    "https://www.instagram.com/centredentairechifaa.ma/",
+    "https://dentisto.ma/rendez-vous/docteurs/taoufik-boukadous-2112",
+    "https://maps.app.goo.gl/aMVAGuZqDNjD9A5PA"
+   ],
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "telephone": "+212535516924",
+    "email": "centredentairechifaa@gmail.com",
+    "availableLanguage": [
+     "fr",
+     "ar"
+    ],
+    "areaServed": "MA"
+   },
+   "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Soins dentaires",
+    "itemListElement": [
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "MedicalProcedure",
+       "@id": "https://www.centredentairechifaa.ma/soins/orthodontie-meknes/#procedure",
+       "name": "Orthodontie",
+       "url": "https://www.centredentairechifaa.ma/soins/orthodontie-meknes/"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "MedicalProcedure",
+       "@id": "https://www.centredentairechifaa.ma/soins/implants-dentaires-meknes/#procedure",
+       "name": "Implants dentaires",
+       "url": "https://www.centredentairechifaa.ma/soins/implants-dentaires-meknes/"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "MedicalProcedure",
+       "@id": "https://www.centredentairechifaa.ma/soins/chirurgie-orale-meknes/#procedure",
+       "name": "Chirurgie orale",
+       "url": "https://www.centredentairechifaa.ma/soins/chirurgie-orale-meknes/"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "MedicalProcedure",
+       "@id": "https://www.centredentairechifaa.ma/soins/parodontie-meknes/#procedure",
+       "name": "Parodontie",
+       "url": "https://www.centredentairechifaa.ma/soins/parodontie-meknes/"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "MedicalProcedure",
+       "@id": "https://www.centredentairechifaa.ma/soins/prothese-dentaire-meknes/#procedure",
+       "name": "Prothèse dentaire",
+       "url": "https://www.centredentairechifaa.ma/soins/prothese-dentaire-meknes/"
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "MedicalProcedure",
+       "@id": "https://www.centredentairechifaa.ma/soins/pedodontie-meknes/#procedure",
+       "name": "Pédodontie",
+       "url": "https://www.centredentairechifaa.ma/soins/pedodontie-meknes/"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "@type": "Person",
+   "@id": "https://www.centredentairechifaa.ma/#dr-boukadous",
+   "name": "Dr Taoufik Boukadous",
+   "givenName": "Taoufik",
+   "familyName": "Boukadous",
+   "honorificPrefix": "Dr",
+   "jobTitle": "Chirurgien-dentiste",
+   "url": "https://www.centredentairechifaa.ma/le-cabinet/",
+   "worksFor": {
+    "@id": "https://www.centredentairechifaa.ma/#cabinet"
+   },
+   "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Université Internationale de Rabat (UIR)"
+   },
+   "hasCredential": [
+    {
+     "@type": "EducationalOccupationalCredential",
+     "credentialCategory": "degree",
+     "name": "Diplôme de Docteur en Médecine Dentaire"
+    },
+    {
+     "@type": "EducationalOccupationalCredential",
+     "credentialCategory": "certificate",
+     "name": "Diplôme Universitaire d'Implantologie et de Chirurgie Orale"
+    }
+   ],
+   "knowsAbout": [
+    "Implantologie",
+    "Chirurgie orale",
+    "Chirurgie implantaire guidée",
+    "Esthétique du sourire",
+    "Endodontie",
+    "Restaurations en composite"
+   ],
+   "knowsLanguage": [
+    "fr",
+    "ar"
+   ]
+  },
+  {
    "@type": "WebPage",
    "url": "https://www.centredentairechifaa.ma/mentions-legales/",
-   "name": "Mentions légales | Centre Dentaire Chifaa, Meknès"
+   "name": "Mentions légales | Centre Dentaire Chifaa, Meknès",
+   "@id": "https://www.centredentairechifaa.ma/mentions-legales/#webpage",
+   "description": "Mentions légales du Centre Dentaire Chifaa, cabinet du Dr Taoufik Boukadous à Meknès : éditeur, hébergement, propriété intellectuelle, crédits.",
+   "inLanguage": "fr",
+   "isPartOf": {
+    "@id": "https://www.centredentairechifaa.ma/#website"
+   },
+   "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://www.centredentairechifaa.ma/assets/img/reception-cabinet-cdc-meknes.jpg"
+   },
+   "about": {
+    "@id": "https://www.centredentairechifaa.ma/#cabinet"
+   },
+   "breadcrumb": {
+    "@id": "https://www.centredentairechifaa.ma/mentions-legales/#breadcrumb"
+   }
   },
   {
    "@type": "BreadcrumbList",
@@ -44,7 +271,8 @@
      "name": "Mentions légales",
      "item": "https://www.centredentairechifaa.ma/mentions-legales/"
     }
-   ]
+   ],
+   "@id": "https://www.centredentairechifaa.ma/mentions-legales/#breadcrumb"
   }
  ]
 }
