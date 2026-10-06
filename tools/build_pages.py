@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261006e'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261006f'          # version de dark.css / dark.js (cache navigateur)
 EMAIL = 'centredentairechifaa@gmail.com'
 ICE = '003546775000034'
 ORDRE = '7326'
@@ -201,7 +201,7 @@ SOINS = {
   title="Parodontie à Meknès | Gencives, déchaussement – CDC",
   desc="Parodontie à Meknès : gencives qui saignent, déchaussement, dents qui bougent. Bilan, détartrage, surfaçage et suivi. Tél 05 35 51 69 24.",
   h1="Parodontie à Meknès,<br>des gencives saines et solides.",
-  hero=('3d-cosmetic.jpg', 900, 900),
+  hero=('ba-gencives-apres.jpg', 1400, 584),
   gallery=[('parodontie-detartrage-avant-apres.jpg', "Dents avant et après un détartrage"),
            ('sonde-parodontale.jpg', "Sonde parodontale utilisée pour le bilan des gencives"),
            ('schema-parodonte.jpg', "Schéma d'une dent atteinte de parodontite, avec perte de l'os"),
