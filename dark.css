@@ -2281,3 +2281,22 @@ img.ab-circle { object-fit: cover; }
 .ph.ph-logo .ab-tooth { width: clamp(72px, 22%, 120px); height: auto; aspect-ratio: 48 / 45; background: currentColor; }
 .ph.ph-logo { display: flex; align-items: center; justify-content: center; }
 .ph.ph-logo .ab-tooth { width: 96px; flex: 0 0 auto; }
+
+/* /soins/ : photo du héros entière (dézoomée), comblée par la même photo floutée */
+.st-hero-fill { position: absolute; left: -40px; top: -40px; z-index: -3; width: calc(100% + 80px); height: calc(100% + 80px); object-fit: cover; filter: blur(28px) brightness(.5); }
+.st-hero-bg {
+  inset: auto; left: 50%; top: 0; width: auto; height: 100%; max-width: none; transform: translateX(-50%); object-fit: cover; will-change: auto;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%);
+}
+@media (max-width: 767px) {
+  .st-hero-bg { left: 0; width: 100%; height: 100%; transform: none; object-fit: cover; object-position: 50% 30%; -webkit-mask-image: none; mask-image: none; }
+}
+
+/* pages soins : photo du héros encore moins zoomée */
+@media (min-width: 700px) { .tp-hero-bg { top: 5%; height: 84%; } }
+@media (max-width: 699px) {
+  .tp-hero-bg { object-fit: contain; object-position: 50% 30%; height: 64%;
+    -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 100%); mask-image: linear-gradient(180deg, #000 72%, transparent 100%); }
+}
+@media (min-width: 768px) { .st-hero-bg { left: 0; right: 0; margin: 0 auto; transform: none; } }

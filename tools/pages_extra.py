@@ -388,7 +388,7 @@ def soins_hub(B):
 <main id="top">
 
   <section class="st-hero">
-    <img class="st-hero-bg" src="/assets/img/cabinet-salle-de-soins-meknes.jpg" alt="Salle de soins du Centre Dentaire Chifaa à Meknès" fetchpriority="high">
+    <img class="st-hero-fill" src="/assets/img/accueil-cabinet-cdc-meknes.jpg" alt="" aria-hidden="true"><img class="st-hero-bg" src="/assets/img/accueil-cabinet-cdc-meknes.jpg" alt="Bureau de consultation du Centre Dentaire Chifaa à Meknès, mur au logo CDC et unit dentaire" width="1920" height="1827" fetchpriority="high">
     <div class="st-hero-l" data-st-up>
       <h1>Soins dentaires à Meknès</h1>
       <p>Six spécialités réunies au Centre Dentaire Chifaa, pour des résultats durables et votre confort.</p>
