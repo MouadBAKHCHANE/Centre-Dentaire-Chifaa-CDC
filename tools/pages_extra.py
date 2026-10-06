@@ -347,7 +347,8 @@ def soins_hub(B):
     cards = ''.join('''
       <a class="st-card" href="/soins/%(s)s-meknes/">
         <span class="st-media">
-          <img src="/assets/img/%(img)s" alt="%(alt)s" loading="lazy">
+          <img class="st-media-fill" src="/assets/img/%(img)s" alt="" aria-hidden="true" loading="lazy">
+          <img class="st-media-img" src="/assets/img/%(img)s" alt="%(alt)s" loading="lazy">
           <span class="st-details" aria-hidden="true">%(det)s<span class="st-details-bg"></span></span>
           <span class="st-tag">%(tag)s</span>
         </span>
