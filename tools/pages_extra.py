@@ -695,10 +695,9 @@ def book_ring():
     return '''
   <section class="ab-book ab-book-fl" aria-labelledby="ab-book-h" data-fl>
     <div class="ab-ring" aria-hidden="true"><span class="ab-ring-disc"></span></div>
-    <div class="fl-imgs" aria-hidden="true">%s</div>
     <div class="ab-book-c">
       <h2 id="ab-book-h">Prenez<br>rendez-vous</h2>
       <a class="ab-link" href="/contact/"><span>Planifier ma visite</span>%s<i aria-hidden="true"></i></a>
     </div>
   </section>
-''' % (imgs, ARROW_UR)
+''' % ARROW_UR
