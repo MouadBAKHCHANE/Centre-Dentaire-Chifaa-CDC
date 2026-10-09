@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261007b'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261009a'          # version de dark.css / dark.js (cache navigateur)
 EMAIL = 'centredentairechifaa@gmail.com'
 ICE = '003546775000034'
 ORDRE = '7326'
