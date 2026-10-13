@@ -18,7 +18,7 @@ import json, os, re, sys, html as H
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.centredentairechifaa.ma'
-VER = '20261009b'          # version de dark.css / dark.js (cache navigateur)
+VER = '20261013a'          # version de dark.css / dark.js (cache navigateur)
 EMAIL = 'centredentairechifaa@gmail.com'
 ICE = '003546775000034'
 ORDRE = '7326'
@@ -423,7 +423,7 @@ DENTIST = {"@type": "Dentist", "@id": SITE + "/#cabinet", "name": "Centre Dentai
            "url": SITE + "/", "hasMap": MAPS, "logo": SITE + "/assets/logo-cdc-light.png",
            "image": SITE + "/assets/img/og-centre-dentaire-chifaa.jpg", "medicalSpecialty": "https://schema.org/Dentistry",
            "openingHoursSpecification": [
-               {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:30", "closes": "17:30"},
+               {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:30"},
                {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:30"}],
            "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "43"}}
 
@@ -627,7 +627,7 @@ def booking(checked=None, title='Planifiez votre visite'):
         %(l5)s
         <a class="btn btn-navy btn-big tp-book-cta" href="%(book)s" target="_blank" rel="noopener">Prendre rendez-vous%(orb)s</a>%(l2)s
       </div>
-      <p class="tp-book-hours" data-fade><span>Lundi au vendredi de 8h30 à 17h30,</span> <span>samedi de 9h00 à 14h30.</span></p>
+      <p class="tp-book-hours" data-fade><span>Lundi au vendredi de 9h00 à 17h30,</span> <span>samedi de 9h00 à 14h30.</span></p>
     </div>
 
     <div class="tp-form-card" data-fade>
@@ -692,7 +692,7 @@ def lieu(img='reception-cabinet-cdc-meknes.jpg', alt="Accueil du Centre Dentaire
       </span>
       <span class="lieu-space" aria-hidden="true"></span>
       <span class="lieu-address"><span>Bureau N1, Imm Bureaux El Menzah N5</span><span>Av des FAR, Meknès 50000</span></span>
-      <span class="lieu-hours"><span>Lun – Ven : 8h30 – 17h30</span><span>Sam : 9h00 – 14h30</span></span>
+      <span class="lieu-hours"><span>Lun – Ven : 9h00 – 17h30</span><span>Sam : 9h00 – 14h30</span></span>
     </a>
   </section>
 ''' % (img, H.escape(alt), MAPS)
@@ -788,10 +788,10 @@ def cabinet_page():
       <ul class="tp-links" data-fade>%(specs)s</ul>
 
       <h3 data-fade>Venir au cabinet</h3>
-      <p data-fade>Bureau N1, Imm Bureaux El Menzah N5, avenue des FAR, Meknès 50000. Le cabinet est ouvert du lundi au vendredi de 8h30 à 17h30 et le samedi de 9h00 à 14h30. <a href="%(maps)s" target="_blank" rel="noopener">Ouvrir l'itinéraire dans Google Maps</a>.</p>
+      <p data-fade>Bureau N1, Imm Bureaux El Menzah N5, avenue des FAR, Meknès 50000. Le cabinet est ouvert du lundi au vendredi de 9h00 à 17h30 et le samedi de 9h00 à 14h30. <a href="%(maps)s" target="_blank" rel="noopener">Ouvrir l'itinéraire dans Google Maps</a>.</p>
     </div>
   </section>
-''' % dict(meta=meta_aside([[('pin', 'ADRESSE', 'Av des FAR, Meknès'), ('clock', 'LUN – VEN', '8h30 – 17h30'), ('cal', 'SAMEDI', '9h00 – 14h30')],
+''' % dict(meta=meta_aside([[('pin', 'ADRESSE', 'Av des FAR, Meknès'), ('clock', 'LUN – VEN', '9h00 – 17h30'), ('cal', 'SAMEDI', '9h00 – 14h30')],
                              [('shield', 'SPÉCIALITÉS', '6 réunies'), ('scan', 'RADIOLOGIE', '2D et 3D sur place'), ('user', 'PRATICIEN', 'Dr T. Boukadous')]]),
            specs=specs, maps=MAPS) \
         + lieu('accueil-cabinet-cdc-meknes.jpg', "Bureau du Centre Dentaire Chifaa et mur au logo CDC") + cta_arc() + '\n</main>\n'
@@ -811,7 +811,7 @@ CF_LOC = '''
         <span class="lieu-title"><span class="lieu-h">Meknès, Maroc</span><span class="lieu-arrow" aria-hidden="true">%(arrow)s</span></span>
         <span class="lieu-space" aria-hidden="true"></span>
         <span class="lieu-address"><span>Bureau N1, Imm Bureaux El Menzah N5</span><span>Av des FAR, Meknès 50000</span></span>
-        <span class="lieu-hours"><span>Lun – Ven : 8h30 – 17h30</span><span>Sam : 9h00 – 14h30</span></span>
+        <span class="lieu-hours"><span>Lun – Ven : 9h00 – 17h30</span><span>Sam : 9h00 – 14h30</span></span>
       </a>
     </div>
   </section>
@@ -891,7 +891,7 @@ def contact_page():
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in faqs]},
         crumbs([('Accueil', '/'), ('Contact', path)])]}
     return (path, "Contact | Centre Dentaire Chifaa, dentiste à Meknès",
-            "Centre Dentaire Chifaa, Av des FAR à Meknès : 05 35 51 69 24, WhatsApp ou réservation en ligne. Lun-ven 8h30-17h30, sam 9h00-14h30.",
+            "Centre Dentaire Chifaa, Av des FAR à Meknès : 05 35 51 69 24, WhatsApp ou réservation en ligne. Lun-ven 9h00-17h30, sam 9h00-14h30.",
             'reception-cabinet-cdc-meknes.jpg', ld, body)
 
 def legal_page(path, title, h1, sections, desc):

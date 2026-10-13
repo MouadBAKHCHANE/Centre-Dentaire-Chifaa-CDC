@@ -597,7 +597,7 @@ def cabinet_about(B):
       <div class="ab-bento-r">
         <div class="ab-locs" data-ab-in>
           <div class="ab-loc"><span class="ab-loc-tag mono">MEKNÈS</span><h3>Av des FAR</h3><p>Bureau N1, Imm Bureaux El Menzah N5<br>Meknès 50000</p></div>
-          <div class="ab-loc"><span class="ab-loc-tag mono">HORAIRES</span><h3>Lun – Sam</h3><p>Lun – Ven : 8h30 – 17h30<br>Sam : 9h00 – 14h30</p></div>
+          <div class="ab-loc"><span class="ab-loc-tag mono">HORAIRES</span><h3>Lun – Sam</h3><p>Lun – Ven : 9h00 – 17h30<br>Sam : 9h00 – 14h30</p></div>
         </div>
         <div class="ab-media" data-ab-in>
           <a class="ab-media-rating" href="%(maps)s" target="_blank" rel="noopener">
