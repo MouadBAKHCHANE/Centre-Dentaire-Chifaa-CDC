@@ -61,7 +61,7 @@ SOIN_NAME = {'orthodontie': 'Orthodontie', 'implants-dentaires': 'Implants denta
 # --------------------------------------------------------------------------------------------
 SOINS = {
  'orthodontie': dict(
-  title="Orthodontie à Meknès | Aligneurs & bagues – CDC",
+  title="Orthodontiste à Meknès | Aligneurs & bagues – Chifaa",
   desc="Orthodontiste à Meknès : aligneurs invisibles et bagues métalliques, pour enfants et adultes. Devis écrit, noté 5,0/5. Tél 05 35 51 69 24.",
   h1="Orthodontiste à Meknès,<br>pour un sourire aligné.",
   hero=('orthodontie-bagues-aligneurs-meknes.jpg', 1200, 655),
@@ -106,7 +106,7 @@ SOINS = {
  ),
 
  'implants-dentaires': dict(
-  title="Implant dentaire à Meknès | Unitaire, All-on-4 – CDC",
+  title="Implant dentaire à Meknès | Unitaire, All-on-4 – Chifaa",
   desc="Implants dentaires à Meknès : implant unitaire, bridge, All-on-4 et greffe osseuse, planifiés en radiographie 3D. Devis écrit. Tél 05 35 51 69 24.",
   h1="Implants dentaires à Meknès,<br>pour une dentition fixe.",
   hero=('implant-dentaire-pose-meknes.jpg', 1024, 768),
@@ -152,7 +152,7 @@ SOINS = {
  ),
 
  'chirurgie-orale': dict(
-  title="Chirurgie orale à Meknès | Dents de sagesse – CDC",
+  title="Chirurgie orale à Meknès | Dents de sagesse – Chifaa",
   desc="Chirurgie orale à Meknès : dents de sagesse, extractions complexes et chirurgie pré-implantaire, sous anesthésie locale. Tél 05 35 51 69 24.",
   h1="Chirurgie orale à Meknès,<br>au cabinet, sous anesthésie locale.",
   hero=('chirurgie-orale-extraction-3d.jpg', 800, 600),
@@ -198,7 +198,7 @@ SOINS = {
  ),
 
  'parodontie': dict(
-  title="Parodontie à Meknès | Gencives, déchaussement – CDC",
+  title="Parodontie à Meknès | Gencives, déchaussement – Chifaa",
   desc="Parodontie à Meknès : gencives qui saignent, déchaussement, dents qui bougent. Bilan, détartrage, surfaçage et suivi. Tél 05 35 51 69 24.",
   h1="Parodontie à Meknès,<br>des gencives saines et solides.",
   hero=('ba-gencives-apres.jpg', 1400, 584),
@@ -243,7 +243,7 @@ SOINS = {
  ),
 
  'prothese-dentaire': dict(
-  title="Prothèse dentaire à Meknès | Couronnes, bridges – CDC",
+  title="Prothèse dentaire à Meknès | Couronnes, bridges – Chifaa",
   desc="Prothèse dentaire à Meknès : couronnes céramique et zircone, facettes, bridges et prothèses amovibles, par empreinte numérique. Devis écrit.",
   h1="Prothèse dentaire à Meknès,<br>couronnes, facettes et bridges.",
   hero=('facette-ceramique-pose-meknes.jpg', 960, 960),
@@ -289,7 +289,7 @@ SOINS = {
  ),
 
  'pedodontie': dict(
-  title="Dentiste enfant à Meknès | Pédodontie – CDC",
+  title="Dentiste enfant à Meknès | Pédodontie – Chifaa",
   desc="Dentiste pour enfants à Meknès : première visite, prévention des caries, vernis fluoré et soins des dents de lait, dans le calme. Tél 05 35 51 69 24.",
   h1="Pédodontie à Meknès,<br>des soins doux pour les enfants.",
   hero=('examen-dentaire-enfant.jpg', 1400, 933),
@@ -449,7 +449,7 @@ PERSON = {"@type": "Person", "@id": ID_DR, "name": "Dr Taoufik Boukadous", "give
 def org_full():
     d = dict(DENTIST)
     d.update({
-        "alternateName": "CDC Meknès",
+        "alternateName": ["Centre Dentaire Chifaa Meknès", "CDC Meknès"],
         "description": "Centre dentaire pluridisciplinaire à Meknès : orthodontie, implants dentaires, chirurgie orale, parodontie, prothèse dentaire et pédodontie.",
         "logo": {"@type": "ImageObject", "@id": SITE + "/#logo", "url": SITE + "/assets/logo-cdc.png", "width": 1156, "height": 479, "caption": "Centre Dentaire Chifaa"},
         "image": [SITE + "/assets/img/og-centre-dentaire-chifaa.jpg", SITE + "/assets/img/reception-cabinet-cdc-meknes.jpg",

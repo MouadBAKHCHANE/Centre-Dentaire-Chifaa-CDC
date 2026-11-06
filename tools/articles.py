@@ -97,7 +97,7 @@ ARTICLES = [
   ]),
  dict(
   slug="dechaussement-des-dents-signes",
-  seo="Déchaussement des dents : les signes d'alerte",
+  seo="Déchaussement des dents : signes d'alerte",
   title="Déchaussement des dents : les signes qui doivent alerter",
   cat="Parodontie", soin="parodontie",
   img="parodontie-detartrage-avant-apres.jpg", alt="Dents avant et après un détartrage",

@@ -110,7 +110,7 @@ def blog_index(B):
          "blogPost": [{"@type": "BlogPosting", "headline": a['title'], "url": B.SITE + art_url(a), "datePublished": DATE_ISO} for a in ARTICLES]},
         B.DENTIST,
         B.crumbs([('Accueil', '/'), ('Blog', path)])]}
-    return (path, "Blog dentaire : conseils d'un dentiste à Meknès | CDC",
+    return (path, "Blog dentaire : conseils d'un dentiste à Meknès | Chifaa",
             "Conseils d'un cabinet dentaire de Meknès : implants, orthodontie, dents de sagesse, gencives et soins des enfants, expliqués simplement.",
             'cabinet-couloir-meknes.jpg', ld, body)
 
@@ -173,7 +173,7 @@ def article(B, a):
         B.DENTIST,
         B.crumbs([('Accueil', '/'), ('Blog', '/blog/'), (a['title'], path)])]}
     desc = a['lead'] if len(a['lead']) <= 155 else a['lead'][:152].rsplit(' ', 1)[0] + '…'
-    return (path, "%s | CDC Meknès" % a.get('seo', a['title']), desc, a['img'], ld, body)
+    return (path, "%s | Chifaa Meknès" % a.get('seo', a['title']), desc, a['img'], ld, body)
 
 
 # ------------------------------------------------------------------------------------------
@@ -284,7 +284,7 @@ def equipment(B):
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "WebPage", "url": B.SITE + path, "name": "Équipements – Centre Dentaire Chifaa", "about": B.DENTIST},
         B.crumbs([('Accueil', '/'), ('Équipements', path)])]}
-    return (path, "Radiologie 3D et équipements dentaires à Meknès | CDC",
+    return (path, "Radiologie 3D et équipements dentaires à Meknès | Chifaa",
             "Radiologie panoramique et 3D sur place, empreinte numérique, salle de soins moderne et stérilisation en autoclave au Centre Dentaire Chifaa, Meknès.",
             'cabinet-radiologie-3d-meknes.jpg', ld, body)
 
