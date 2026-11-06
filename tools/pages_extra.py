@@ -5,7 +5,7 @@ Même composition que les pages /blog et /equipment du modèle de référence,
 reconstruites avec les tokens et les contenus du Centre Dentaire Chifaa.
 Importé par build_pages.py (les helpers communs sont passés via le module B).
 """
-import html as H, math, re
+import html as H, math, os, re
 from articles import ARTICLES, AUTHOR, DATE_ISO, DATE_FR
 
 IG = 'https://www.instagram.com/centredentairechifaa.ma/'
@@ -26,7 +26,7 @@ EXTRA_ICONS = {
 
 def words(a):
     txt = ' '.join([a['lead'], a['intro']] + a['points'] +
-                   [' '.join(ps + li) + ' ' + h for h, ps, li in a['sections']])
+                   [' '.join(sec[1] + sec[2]) + ' ' + sec[0] for sec in a['sections']])
     return len(txt.split())
 
 
@@ -115,15 +115,45 @@ def blog_index(B):
             'cabinet-couloir-meknes.jpg', ld, body)
 
 
+def img_size(B, f):
+    """Dimensions réelles de l'image (width/height dans le HTML, évite le décalage de mise en page)."""
+    try:
+        from PIL import Image
+        with Image.open(os.path.join(B.ROOT, 'assets', 'img', f)) as im:
+            return im.size
+    except Exception:
+        return None
+
+
+def figures(B, figs, group):
+    """Figures d'une section d'article : 1 image pleine largeur, ou une rangée de 2 à 4 images.
+    Chaque figure = (fichier, alt, légende). Clic = visionneuse photo du site."""
+    out = []
+    for f, alt, cap in figs:
+        wh = img_size(B, f)
+        dims = ' width="%d" height="%d"' % wh if wh else ''
+        out.append('<figure class="ar-fig"><a class="tp-lb-link" href="/assets/img/%s" data-lightbox="%s" '
+                   'aria-label="Agrandir la photo" aria-haspopup="dialog"><img src="/assets/img/%s" alt="%s"%s '
+                   'loading="lazy" decoding="async">%s</a><figcaption>%s</figcaption></figure>'
+                   % (f, group, f, H.escape(alt), dims, B.LB_IC, cap))
+    if len(out) == 1:
+        return out[0].replace('<figure class="ar-fig">', '<figure class="ar-fig" data-fade>', 1)
+    return '<div class="ar-figs ar-figs-%d" data-fade>%s</div>' % (len(out), ''.join(out))
+
+
 def article(B, a):
     path = art_url(a)
     m = read_min(a)
     soin_path = '/soins/%s-meknes/' % a['soin']
     secs = []
-    for h, ps, li in a['sections']:
+    for sec in a['sections']:
+        h, ps, li = sec[:3]
+        figs = sec[3] if len(sec) > 3 else []
         s = '<h2 data-fade>%s</h2>' % h + ''.join('<p data-fade>%s</p>' % p for p in ps)
         if li:
             s += '<ul class="tp-check ar-check" data-fade>%s</ul>' % ''.join('<li>%s</li>' % x for x in li)
+        if figs:
+            s += figures(B, figs, 'article-' + a['slug'])
         secs.append(s)
     meta = B.meta_aside([
         [('user', 'AUTEUR', 'Équipe CDC'),

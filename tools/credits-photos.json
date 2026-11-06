@@ -186,5 +186,61 @@
   "license": "Création originale AI / Licence exclusive CDC",
   "url": "https://www.centredentairechifaa.ma",
   "source": "CDC"
+ },
+ {
+  "file": "stade-gencive-saine.webp",
+  "title": "File:Zdrava dasen.jpg",
+  "author": "D-institut",
+  "license": "CC BY 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Zdrava_dasen.jpg"
+ },
+ {
+  "file": "stade-parodontite-legere.webp",
+  "title": "File:Mirna parodontitida.jpg",
+  "author": "D-institut",
+  "license": "CC BY 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Mirna_parodontitida.jpg"
+ },
+ {
+  "file": "stade-parodontite-moderee.webp",
+  "title": "File:Stredni parodontitida.jpg",
+  "author": "D-institut",
+  "license": "CC BY 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Stredni_parodontitida.jpg"
+ },
+ {
+  "file": "stade-parodontite-severe.webp",
+  "title": "File:Kriticke stadium parodontitidy.jpg",
+  "author": "D-institut",
+  "license": "CC BY 3.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Kriticke_stadium_parodontitidy.jpg"
+ },
+ {
+  "file": "symptome-gingivite-gencive-rouge.webp",
+  "title": "File:Gingivitis.jpg",
+  "author": "Roquex",
+  "license": "CC0",
+  "url": "https://commons.wikimedia.org/wiki/File:Gingivitis.jpg"
+ },
+ {
+  "file": "dechaussement-racines-exposees.webp",
+  "title": "File:Zahnwurzel freiliegend 1.JPG (recadrage)",
+  "author": "Bin im Garten",
+  "license": "CC BY 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Zahnwurzel_freiliegend_1.JPG"
+ },
+ {
+  "file": "dechaussement-dents-ecartees.webp",
+  "title": "File:Zahnwanderung wegen Periodontitis OK 01.JPG",
+  "author": "Bin im Garten",
+  "license": "CC BY-SA 4.0",
+  "url": "https://commons.wikimedia.org/wiki/File:Zahnwanderung_wegen_Periodontitis_OK_01.JPG"
+ },
+ {
+  "file": "tartre-cause-dechaussement.webp",
+  "title": "File:Dental Calculus.jpg",
+  "author": "JonathanPulse",
+  "license": "CC0",
+  "url": "https://commons.wikimedia.org/wiki/File:Dental_Calculus.jpg"
  }
 ]
