@@ -1196,7 +1196,8 @@ a.tp-stat-v:hover { color: var(--sand); }
   border: 1px solid rgba(255, 255, 255, .3); background: #B1A095; isolation: isolate;
 }
 .bl-big img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.22,1,.36,1); }
-.bl-big::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(216,208,202,.94) 0%, rgba(216,208,202,.72) 26%, rgba(216,208,202,0) 58%); }
+.bl-big::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(244,241,237,.96) 0%, rgba(244,241,237,.86) 30%, rgba(244,241,237,.5) 48%, rgba(244,241,237,0) 66%); }
+@media (max-width: 700px) { .bl-big::after { background: linear-gradient(0deg, rgba(244,241,237,.97) 0%, rgba(244,241,237,.9) 42%, rgba(244,241,237,.55) 62%, rgba(244,241,237,0) 82%); } }
 .bl-big-t { position: absolute; left: 24px; right: 24px; bottom: 24px; display: grid; gap: 14px; }
 .bl-big-h { max-width: 20ch; font: 500 clamp(22px, 2.1vw, 30px)/1.08 var(--font); letter-spacing: -.02em; }
 .bl-big:hover img, .bl-latest:hover img, .bl-card:hover img, .bl-row:hover img { transform: scale(1.04); }
@@ -1250,6 +1251,11 @@ a.tp-stat-v:hover { color: var(--sand); }
   background: linear-gradient(90deg, rgba(7,31,52,.88) 0%, rgba(7,31,52,.55) 45%, rgba(7,31,52,.2) 100%), linear-gradient(0deg, rgba(7,31,52,.55) 0%, rgba(7,31,52,0) 45%);
 }
 .ar-hero-copy { max-width: min(760px, 100%); }
+/* mobile : l'image occupe le haut du héro (moins zoomée), le titre se lit sur le fond bleu */
+@media (max-width: 700px) {
+  .ar-hero-bg { height: 58%; }
+  .ar-hero::before { background: linear-gradient(0deg, #071F34 0%, #071F34 42%, rgba(7,31,52,.55) 52%, rgba(7,31,52,.2) 72%, rgba(7,31,52,.35) 100%); }
+}
 .ar-date { display: inline-flex; margin: 0 0 20px; border-radius: 8px; overflow: hidden; background: rgba(14, 62, 104, .72); backdrop-filter: blur(8px); font-size: 13px; letter-spacing: .06em; color: #F4F2F0; }
 .ar-date > * { padding: 10px 16px; }
 .ar-date span { background: #0E3E68; }
