@@ -424,8 +424,7 @@ DENTIST = {"@type": "Dentist", "@id": SITE + "/#cabinet", "name": "Centre Dentai
            "image": SITE + "/assets/img/og-centre-dentaire-chifaa.jpg", "medicalSpecialty": "https://schema.org/Dentistry",
            "openingHoursSpecification": [
                {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:30"},
-               {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:30"}],
-           "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "43"}}
+               {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:30"}]}
 
 # --------------------------------------------------------------------------------------------
 # Schéma : graphe JSON-LD commun à toutes les pages (identifiants stables, liés par @id)
