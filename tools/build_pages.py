@@ -825,6 +825,7 @@ def contact_page():
              'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7l-10 10"/><path d="M8 7h9v9"/></svg>')
     faqs = [
         ("Comment prendre rendez-vous ?", "Appelez le cabinet au 05 35 51 69 24, écrivez-nous sur WhatsApp ou réservez directement en ligne sur Dentisto. Nous vous proposons un créneau aux horaires d'ouverture."),
+        ("Où se trouve le cabinet ?", "Le Centre Dentaire Chifaa se trouve au Bureau N1, Imm Bureaux El Menzah N5, avenue des FAR, dans le quartier Hamria, au centre de Meknès. Le bouton Itinéraire ci-dessus ouvre le trajet dans Google Maps."),
         ("Que faut-il apporter à la première consultation ?", "Votre pièce d'identité, vos radiographies ou comptes rendus récents s'ils existent, la liste de vos traitements en cours et, le cas échéant, les documents de votre mutuelle ou de votre assurance."),
         ("Que faire en cas d'urgence dentaire ?", "Appelez le cabinet pendant les horaires d'ouverture et expliquez la situation : douleur, dent cassée, gonflement. Nous faisons notre possible pour vous recevoir rapidement. En dehors des horaires, laissez-nous un message sur WhatsApp."),
         ("Le cabinet travaille-t-il avec les mutuelles et assurances ?", "Un devis écrit et détaillé vous est remis avant tout traitement. Nous vous fournissons les documents nécessaires pour vos démarches de remboursement auprès de votre mutuelle ou de votre assurance."),
@@ -855,7 +856,7 @@ def contact_page():
   <div class="cf-duo">
 ''' + booking(title='Planifiez votre visite') + '''
   <section class="cf-map cf-map-pin" aria-label="Trouver le cabinet">
-    <img class="cf-map-bg" src="/assets/img/plan-quartier-cabinet-meknes.jpg" alt="Plan du quartier de l'avenue des FAR à Meknès, avec l'emplacement du cabinet" loading="lazy">
+    <img class="cf-map-bg" src="/assets/img/plan-quartier-cabinet-meknes.jpg" alt="Plan du quartier Hamria à Meknès, avenue des FAR, avec l'emplacement du cabinet" loading="lazy">
     <span class="cf-map-fade" aria-hidden="true"></span>
     <div class="cf-map-head">
       <h2 class="cf-map-h">Trouver le cabinet</h2>
@@ -890,7 +891,7 @@ def contact_page():
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in faqs]},
         crumbs([('Accueil', '/'), ('Contact', path)])]}
     return (path, "Contact | Centre Dentaire Chifaa, dentiste à Meknès",
-            "Centre Dentaire Chifaa, Av des FAR à Meknès : 05 35 51 69 24, WhatsApp ou réservation en ligne. Lun-ven 9h00-17h30, sam 9h00-14h30.",
+            "Centre Dentaire Chifaa, Av des FAR, quartier Hamria à Meknès : 05 35 51 69 24, WhatsApp ou réservation en ligne. Lun-ven 9h00-17h30, sam 9h00-14h30.",
             'reception-cabinet-cdc-meknes.jpg', ld, body)
 
 def legal_page(path, title, h1, sections, desc):

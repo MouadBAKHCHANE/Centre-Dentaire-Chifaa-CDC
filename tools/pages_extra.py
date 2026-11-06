@@ -588,7 +588,7 @@ def cabinet_about(B):
 
   <section class="ab-about" aria-labelledby="ab-about-h">
     <p class="ab-pills mono"><span>LE</span><span>CENTRE</span></p>
-    <h2 id="ab-about-h" class="ab-about-h">Le Centre Dentaire Chifaa réunit six spécialités et un plateau technique moderne, avenue des FAR. De la prévention aux traitements complexes, nous visons des résultats sur lesquels vous pouvez compter.</h2>
+    <h2 id="ab-about-h" class="ab-about-h">Le Centre Dentaire Chifaa réunit six spécialités et un plateau technique moderne, avenue des FAR, dans le quartier Hamria. De la prévention aux traitements complexes, nous visons des résultats sur lesquels vous pouvez compter.</h2>
     <div class="ab-bento">
       <div class="ab-bento-l">
         %(ph_bento)s
@@ -596,7 +596,7 @@ def cabinet_about(B):
       </div>
       <div class="ab-bento-r">
         <div class="ab-locs" data-ab-in>
-          <div class="ab-loc"><span class="ab-loc-tag mono">MEKNÈS</span><h3>Av des FAR</h3><p>Bureau N1, Imm Bureaux El Menzah N5<br>Meknès 50000</p></div>
+          <div class="ab-loc"><span class="ab-loc-tag mono">MEKNÈS</span><h3>Av des FAR</h3><p>Bureau N1, Imm Bureaux El Menzah N5<br>Quartier Hamria, Meknès 50000</p></div>
           <div class="ab-loc"><span class="ab-loc-tag mono">HORAIRES</span><h3>Lun – Sam</h3><p>Lun – Ven : 9h00 – 17h30<br>Sam : 9h00 – 14h30</p></div>
         </div>
         <div class="ab-media" data-ab-in>
@@ -677,7 +677,7 @@ def cabinet_about(B):
          "mentions": {"@id": B.SITE + "/#dr-boukadous"}},
         B.crumbs([('Accueil', '/'), ('Le cabinet', path)])]}
     return (path, "Le cabinet | Centre Dentaire Chifaa, dentiste à Meknès",
-            "Le Centre Dentaire Chifaa du Dr Taoufik Boukadous, avenue des FAR à Meknès : six spécialités, radiologie 3D sur place et empreinte numérique.",
+            "Le Centre Dentaire Chifaa du Dr Taoufik Boukadous, avenue des FAR (Hamria) à Meknès : six spécialités, radiologie 3D sur place et empreinte numérique.",
             'reception-cabinet-cdc-meknes.jpg', ld, body)
 
 
